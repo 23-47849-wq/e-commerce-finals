@@ -1,0 +1,3411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lovely Little Things - Fashion & Beauty</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #e91e63; /* Beautiful pink */
+  --secondary: #fce4ec; /* Soft light pink */
+  --accent: #c2185b; /* Medium pink accent */
+  --light-pink: #f8bbd9; /* Light pink */
+  --text-dark: #880e4f; /* Dark pink for text */
+  --text-light: #ffffff; /* White for contrast */
+  --menu-item-bg: #fce4ec; /* Pink background for menu items */
+  --men-color: #2196F3; /* Blue for men's section */
+  --women-color: #E91E63; /* Pink for women's section */
+  --kids-color: #4CAF50; /* Green for kids' section */
+  --makeup-color: #9C27B0; /* Purple for makeup section */
+  --bags-color: #FF9800; /* Orange for bags & accessories */
+  --shoes-color: #795548; /* Brown for shoes */
+  --electronics-color: #607D8B; /* Blue-gray for electronics */
+  --home-color: #009688; /* Teal for home & living */
+  --all-color: #9C27B0; /* Purple for all products */
+}
+body {
+  font-family:'Poppins',sans-serif;
+  margin:0;
+  padding:0;
+  background: linear-gradient(135deg, var(--secondary) 0%, #f8bbd9 100%);
+  color: var(--text-dark);
+}
+header {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  color: var(--text-light);
+  padding:15px 0;
+  text-align:center;
+  font-size:28px;
+  font-weight:700;
+  position:relative;
+  box-shadow:0 4px 15px rgba(233, 30, 99, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+.header-logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.logoutBtn {
+  position:absolute;
+  right:20px;
+  top:20px;
+  padding:6px 10px;
+  border:none;
+  border-radius:8px;
+  background: var(--text-light);
+  color: var(--primary);
+  cursor:pointer;
+  font-weight:600;
+  font-size:14px;
+  transition: 0.3s;
+}
+.logoutBtn:hover { 
+  background: var(--light-pink);
+  transform: translateY(-2px);
+}
+
+/* Toast */
+#toast {
+  visibility:hidden;
+  min-width:250px;
+  margin-left:-125px;
+  background-color: var(--primary);
+  color: var(--text-light);
+  text-align:center;
+  border-radius:8px;
+  padding:12px;
+  position:fixed;
+  top:30px;
+  left:50%;
+  z-index:1000;
+  font-size:16px;
+  box-shadow: 0 4px 12px rgba(233, 30, 99, 0.4);
+}
+#toast.show {
+  visibility:visible;
+  animation:fadein 0.5s, fadeout 0.5s 2.5s;
+}
+@keyframes fadein { from {top:0; opacity:0;} to {top:30px; opacity:1;} }
+@keyframes fadeout { from {top:30px; opacity:1;} to {top:0; opacity:0;} }
+
+/* LOGIN + REGISTER + MISSION/VISION + IMAGE */
+#loginDiv {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:30px;
+  margin-top:50px;
+  flex-wrap:wrap;
+}
+.login-left {
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+#loginDiv input, #loginDiv select, #loginDiv button {
+  margin:8px 0;
+  padding:12px;
+  width:280px;
+  border-radius:12px;
+  border:1px solid var(--light-pink);
+  font-size:18px;
+  background: var(--text-light);
+  color: var(--text-dark);
+  transition: 0.3s;
+}
+#loginDiv input:focus, #loginDiv select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(233, 30, 99, 0.2);
+}
+#loginDiv input::placeholder {
+  color: #c48b9f;
+}
+#loginDiv select {
+  background: var(--text-light);
+  color: var(--text-dark);
+}
+#loginDiv button {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  color: var(--text-light);
+  border:none;
+  cursor:pointer;
+  transition:0.3s;
+  font-size:20px;
+  font-weight:700;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+}
+#loginDiv button::before {
+  content: '❤️';
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 22px;
+}
+#loginDiv button:hover { 
+  background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
+}
+
+/* Mission & Vision Box */
+.mission-vision-box {
+  background: rgba(233, 30, 99, 0.1);
+  padding:30px;
+  border-radius:16px;
+  max-width:450px;
+  box-shadow:0 6px 15px rgba(233, 30, 99, 0.2);
+  border: 1px solid rgba(233, 30, 99, 0.2);
+  backdrop-filter: blur(5px);
+}
+.mission-vision-box p {
+  color: var(--text-dark);
+  font-weight:700;
+  font-size:18px;
+  margin:0;
+  line-height:1.5;
+}
+
+/* Login image on right */
+#loginImage {
+  max-width:500px;
+  width:100%;
+  border-radius:16px;
+  object-fit:cover;
+  box-shadow:0 6px 20px rgba(0,0,0,0.15);
+  background: linear-gradient(135deg, var(--secondary) 0%, var(--light-pink) 100%);
+  padding: 20px;
+}
+
+/* Social media icons */
+.social-icons {
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  margin-top:15px;
+}
+.social-icons img {
+  width:32px;
+  height:32px;
+  cursor:pointer;
+  transition:0.3s;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.social-icons img:hover { 
+  transform:scale(1.2);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Dashboard */
+#dashboard { 
+  display:none; 
+  padding:20px; 
+  background: linear-gradient(135deg, var(--secondary) 0%, #f8bbd9 100%);
+}
+
+/* Section backgrounds - ALL PINK */
+#customerSection, #staffSection, #adminSection {
+  background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
+  padding:15px;
+  border-radius:12px;
+  margin-bottom:20px;
+  box-shadow: 0 4px 15px rgba(233, 30, 99, 0.1);
+  border: 1px solid var(--light-pink);
+}
+
+/* Category Tabs */
+.category-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.category-tab {
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+  border: 2px solid transparent;
+  color: white;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+.category-tab.all {
+  background: var(--all-color);
+}
+.category-tab.men {
+  background: var(--men-color);
+}
+.category-tab.women {
+  background: var(--women-color);
+}
+.category-tab.kids {
+  background: var(--kids-color);
+}
+.category-tab.makeup {
+  background: var(--makeup-color);
+}
+.category-tab.bags {
+  background: var(--bags-color);
+}
+.category-tab.shoes {
+  background: var(--shoes-color);
+}
+.category-tab.electronics {
+  background: var(--electronics-color);
+}
+.category-tab.home {
+  background: var(--home-color);
+}
+.category-tab.active {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Category Banners */
+.category-banner {
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  object-fit: cover;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Shopee-style grid */
+.menu-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:20px;
+}
+.menu-item {
+  background: var(--menu-item-bg); /* Changed from white to pink */
+  padding:15px;
+  border-radius:12px;
+  box-shadow:0 3px 10px rgba(233, 30, 99, 0.1);
+  text-align:center;
+  transition:0.3s;
+  border: 1px solid var(--light-pink);
+  color: var(--text-dark);
+  position: relative;
+}
+.menu-item:hover {
+  transform:translateY(-5px);
+  box-shadow:0 8px 20px rgba(233, 30, 99, 0.2);
+  border-color: var(--primary);
+}
+.menu-item img {
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:10px;
+  margin-bottom:8px;
+  border: 1px solid var(--light-pink);
+}
+.menu-item h4 { margin:4px 0; font-size:16px; color: var(--text-dark); }
+.menu-item p { margin:4px 0; font-weight:500; color: var(--primary); font-size:15px; }
+.menu-item button {
+  padding:8px 15px;
+  border:none;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  color: var(--text-light);
+  border-radius:6px;
+  transition:0.3s;
+  cursor:pointer;
+  font-size:14px;
+  margin:2px;
+  box-shadow: 0 2px 5px rgba(233, 30, 99, 0.3);
+}
+.menu-item button:hover { 
+  background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(233, 30, 99, 0.4);
+}
+
+/* Favorite Button */
+.favorite-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: 0.3s;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.favorite-btn:hover {
+  background: white;
+  transform: scale(1.1);
+}
+.favorite-btn.active {
+  background: var(--primary);
+  color: white;
+}
+
+/* Tables */
+table {
+  width:100%;
+  border-collapse:collapse;
+  background: var(--text-light);
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:0 3px 10px rgba(233, 30, 99, 0.1);
+  margin-bottom:15px;
+  font-size:13px;
+  border: 1px solid var(--light-pink);
+}
+th, td {
+  border-bottom:1px solid var(--light-pink);
+  padding:8px;
+  text-align:center;
+  color: var(--text-dark);
+}
+th { background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); color: var(--text-light); font-size:13px; }
+td button, td select {
+  padding:4px 8px;
+  border:none;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  color: var(--text-light);
+  border-radius:5px;
+  cursor:pointer;
+  font-size:12px;
+  transition: 0.3s;
+  box-shadow: 0 2px 5px rgba(233, 30, 99, 0.3);
+}
+td button:hover { 
+  background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+  transform: translateY(-1px);
+}
+td select {
+  background: var(--text-light);
+  color: var(--text-dark);
+  border:1px solid var(--light-pink);
+  cursor:pointer;
+  font-size:12px;
+  box-shadow: none;
+}
+
+/* Admin forms */
+#adminSection input, #adminSection select, #adminSection button {
+  padding:6px;
+  margin:4px 0;
+  width:100%;
+  border-radius:6px;
+  border:1px solid var(--light-pink);
+  font-size:13px;
+  background: var(--text-light);
+  color: var(--text-dark);
+  transition: 0.3s;
+}
+#adminSection input:focus, #adminSection select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(233, 30, 99, 0.2);
+}
+#adminSection input::placeholder {
+  color: #c48b9f;
+}
+#adminSection button {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  color: var(--text-light);
+  border:none;
+  cursor:pointer;
+  transition:0.3s;
+  font-size:13px;
+  box-shadow: 0 2px 5px rgba(233, 30, 99, 0.3);
+}
+#adminSection button:hover { 
+  background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(233, 30, 99, 0.4);
+}
+
+/* Mini Shopee-style cart */
+.cart {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  color: var(--text-light);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: 0.3s all;
+  overflow: hidden;
+  flex-direction: column;
+  box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
+  border: 2px solid var(--text-light);
+}
+.cart:hover { 
+  width: 350px; 
+  height: auto; 
+  border-radius: 12px; 
+  background: var(--text-light); 
+  color: var(--text-dark); 
+  padding: 12px;
+  box-shadow: 0 8px 25px rgba(233, 30, 99, 0.3);
+}
+.cart h3 { display: none; color: var(--primary); margin: 6px 0; }
+.cart:hover h3 { display: block; text-align: center; }
+.cart-items-wrapper { display: none; max-height: 300px; overflow-y: auto; }
+.cart:hover .cart-items-wrapper { display: block; }
+.cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-size: 13px; color: var(--text-dark); }
+.cart-item button { 
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); 
+  border: none; 
+  color: var(--text-light); 
+  border-radius: 5px; 
+  padding: 2px 5px; 
+  cursor: pointer; 
+  font-size: 12px; 
+  transition: 0.3s;
+  box-shadow: 0 1px 3px rgba(233, 30, 99, 0.3);
+}
+.cart-item button:hover { 
+  background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+  transform: scale(1.05);
+}
+.cart-total { font-weight: 700; font-size: 16px; margin-top: 8px; text-align: right; color: var(--text-dark); }
+select.payment, select.delivery-service, select.address { 
+  width: 100%; 
+  padding: 6px; 
+  margin: 6px 0; 
+  border-radius: 5px; 
+  border: 1px solid var(--light-pink); 
+  font-size: 13px; 
+  background: var(--text-light); 
+  color: var(--text-dark);
+}
+button.pay { 
+  width: 100%; 
+  margin-top: 6px; 
+  padding: 8px; 
+  font-size: 14px; 
+  border: none; 
+  border-radius: 8px; 
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); 
+  color: var(--text-light); 
+  cursor: pointer; 
+  transition: 0.3s; 
+  box-shadow: 0 3px 8px rgba(233, 30, 99, 0.3);
+}
+button.pay:hover { 
+  background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(233, 30, 99, 0.4);
+}
+.cart-badge { 
+  position: absolute; 
+  top: -5px; 
+  right: -5px; 
+  background: var(--accent); 
+  color: var(--text-light); 
+  font-size: 12px; 
+  font-weight: 600; 
+  padding: 2px 6px; 
+  border-radius: 50%; 
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Reference Number Input */
+.reference-input {
+  display: none;
+  width: 100%;
+  padding: 6px;
+  margin: 6px 0;
+  border-radius: 5px;
+  border: 1px solid var(--light-pink);
+  font-size: 13px;
+  background: var(--text-light);
+  color: var(--text-dark);
+}
+
+/* Visit Us Box */
+.visit-box {
+  background: rgba(233, 30, 99, 0.1);
+  padding:15px;
+  border-radius:12px;
+  margin-top:15px;
+  box-shadow:0 3px 10px rgba(233, 30, 99, 0.1);
+  font-size:14px;
+  line-height:1.5;
+  color: var(--text-dark);
+  border: 1px solid rgba(233, 30, 99, 0.2);
+}
+
+/* Register link */
+.register-link {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+}
+.register-link a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+/* Forgot password link */
+.forgot-password {
+  text-align: center;
+  margin-top: 5px;
+  font-size: 14px;
+}
+.forgot-password a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+
+/* Register form */
+#registerDiv {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+#registerDiv input, #registerDiv select, #registerDiv button {
+  margin: 8px 0;
+  padding: 12px;
+  width: 280px;
+  border-radius: 12px;
+  border: 1px solid var(--light-pink);
+  font-size: 18px;
+  background: var(--text-light);
+  color: var(--text-dark);
+  transition: 0.3s;
+}
+#registerDiv input:focus, #registerDiv select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(233, 30, 99, 0.2);
+}
+#registerDiv input::placeholder {
+  color: #c48b9f;
+}
+#registerDiv button {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  color: var(--text-light);
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 20px;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+}
+#registerDiv button:hover { 
+  background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
+}
+.back-to-login {
+  text-align: center;
+  margin-top: 10px;
+}
+.back-to-login a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+.back-to-login a:hover {
+  text-decoration: underline;
+}
+
+/* Password requirement text */
+.password-requirement {
+  font-size: 12px;
+  color: #c48b9f;
+  text-align: center;
+  margin-top: -5px;
+  margin-bottom: 10px;
+}
+
+/* Payment Modal */
+.payment-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 2000;
+  justify-content: center;
+  align-items: center;
+}
+.payment-content {
+  background: var(--text-light);
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 450px;
+  box-shadow: 0 8px 25px rgba(233, 30, 99, 0.3);
+  border: 1px solid var(--light-pink);
+  color: var(--text-dark);
+}
+.payment-content h3 {
+  color: var(--primary);
+  margin-bottom: 15px;
+  text-align: center;
+}
+.payment-content input, .payment-content select {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid var(--light-pink);
+  border-radius: 6px;
+  font-size: 14px;
+  background: var(--text-light);
+  color: var(--text-dark);
+}
+.payment-content input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(233, 30, 99, 0.2);
+}
+.payment-content input::placeholder {
+  color: #c48b9f;
+}
+.payment-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+.payment-buttons button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.confirm-pay {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  color: var(--text-light);
+  box-shadow: 0 3px 8px rgba(233, 30, 99, 0.3);
+}
+.confirm-pay:hover {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(233, 30, 99, 0.4);
+}
+.cancel-pay {
+  background: var(--light-pink);
+  color: var(--text-dark);
+  border: 1px solid var(--light-pink);
+}
+.cancel-pay:hover {
+  background: #f0a8ca;
+  transform: translateY(-2px);
+}
+
+/* Enhanced Order Status Styles */
+.order-status-container {
+  margin-top: 20px;
+  padding: 15px;
+  background: var(--text-light);
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(233, 30, 99, 0.1);
+  border: 1px solid var(--light-pink);
+}
+
+.order-status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--light-pink);
+}
+
+.order-status-timeline {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin: 20px 0;
+}
+
+.order-status-timeline::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--light-pink);
+  z-index: 1;
+}
+
+.order-status-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  flex: 1;
+}
+
+.status-step-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--light-pink);
+  color: var(--text-dark);
+  margin-bottom: 5px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.status-step-active .status-step-icon {
+  background: var(--primary);
+  color: var(--text-light);
+  transform: scale(1.2);
+  box-shadow: 0 0 0 4px rgba(233, 30, 99, 0.2);
+}
+
+.status-step-completed .status-step-icon {
+  background: var(--accent);
+  color: var(--text-light);
+  box-shadow: 0 2px 5px rgba(194, 24, 91, 0.3);
+}
+
+.status-step-label {
+  font-size: 11px;
+  text-align: center;
+  color: var(--text-dark);
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.status-step-active .status-step-label {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.status-step-completed .status-step-label {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.status-step-date {
+  font-size: 10px;
+  color: #c48b9f;
+  margin-top: 2px;
+  text-align: center;
+}
+
+.order-status-details {
+  background: rgba(233, 30, 99, 0.05);
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 15px;
+  border-left: 3px solid var(--primary);
+}
+
+.order-status-details p {
+  margin: 5px 0;
+  font-size: 13px;
+}
+
+.order-items {
+  margin-top: 10px;
+  padding: 10px;
+  background: rgba(233, 30, 99, 0.03);
+  border-radius: 6px;
+}
+
+.order-items ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.order-items li {
+  font-size: 12px;
+  margin-bottom: 3px;
+}
+
+/* Enhanced Status Badges */
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.status-pending { 
+  background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%); 
+  color: #856404; 
+  border: 1px solid #ffeaa7;
+}
+.status-confirmed { 
+  background: linear-gradient(135deg, #d1ecf1 0%, #a8e6f0 100%); 
+  color: #0c5460; 
+  border: 1px solid #a8e6f0;
+}
+.status-processing { 
+  background: linear-gradient(135deg, #ffeaa7 0%, #ffd8a8 100%); 
+  color: #e17055; 
+  border: 1px solid #ffd8a8;
+}
+.status-shipped { 
+  background: linear-gradient(135deg, #d1ecf1 0%, #a8e6f0 100%); 
+  color: #0c5460; 
+  border: 1px solid #a8e6f0;
+}
+.status-out-for-delivery { 
+  background: linear-gradient(135deg, #d1ecf1 0%, #a8e6f0 100%); 
+  color: #0c5460; 
+  border: 1px solid #a8e6f0;
+}
+.status-completed { 
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); 
+  color: var(--text-light); 
+  box-shadow: 0 2px 5px rgba(233, 30, 99, 0.3);
+}
+.status-cancelled { 
+  background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%); 
+  color: #721c24; 
+  border: 1px solid #f5c6cb;
+}
+.status-refund { 
+  background: linear-gradient(135deg, #f5c6cb 0%, #f1b0b7 100%); 
+  color: #721c24; 
+  border: 1px solid #f1b0b7;
+}
+
+/* Shipping fee display */
+.shipping-fee {
+  background: rgba(233, 30, 99, 0.1);
+  padding: 8px;
+  border-radius: 6px;
+  margin: 5px 0;
+  font-size: 13px;
+  border-left: 3px solid var(--primary);
+  color: var(--text-dark);
+}
+
+/* Delivery service badges */
+.delivery-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.jt-express { background: #ff6b6b; color: white; }
+.jrs-express { background: #00b14f; color: white; }
+.lbc-express { background: #ff9f43; color: white; }
+.ninja-van { background: #4834d4; color: white; }
+.lalamove { background: #eb3b5a; color: white; }
+.flash-express { background: #3498db; color: white; }
+.pickup-store { background: var(--primary); color: var(--text-light); }
+
+/* Admin panel styling */
+.admin-panel {
+  background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 10px rgba(233, 30, 99, 0.1);
+  border: 1px solid var(--light-pink);
+}
+
+/* Section headers with logo */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.section-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+/* Dashboard Mission & Vision */
+.dashboard-mission-vision {
+  background: rgba(233, 30, 99, 0.1);
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 20px;
+  box-shadow: 0 3px 10px rgba(233, 30, 99, 0.1);
+  border: 1px solid rgba(233, 30, 99, 0.2);
+}
+.dashboard-mission-vision h3 {
+  color: var(--primary);
+  margin-top: 0;
+  text-align: center;
+}
+.dashboard-mission-vision p {
+  color: var(--text-dark);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Customer orders styling */
+#customerOrders h3 {
+  color: var(--primary);
+}
+#customerOrders div {
+  background: var(--text-light);
+  border: 1px solid var(--light-pink);
+  box-shadow: 0 2px 8px rgba(233, 30, 99, 0.1);
+}
+
+/* Admin form clear styles */
+.admin-form {
+  background: rgba(233, 30, 99, 0.05);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border: 1px solid var(--light-pink);
+}
+
+.admin-form h4 {
+  margin-top: 0;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+/* Admin category tabs */
+.admin-category-tabs {
+  display: flex;
+  margin-bottom: 15px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.admin-category-tab {
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+  border: 2px solid transparent;
+  color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.admin-category-tab.all {
+  background: var(--all-color);
+}
+.admin-category-tab.men {
+  background: var(--men-color);
+}
+.admin-category-tab.women {
+  background: var(--women-color);
+}
+.admin-category-tab.kids {
+  background: var(--kids-color);
+}
+.admin-category-tab.makeup {
+  background: var(--makeup-color);
+}
+.admin-category-tab.bags {
+  background: var(--bags-color);
+}
+.admin-category-tab.shoes {
+  background: var(--shoes-color);
+}
+.admin-category-tab.electronics {
+  background: var(--electronics-color);
+}
+.admin-category-tab.home {
+  background: var(--home-color);
+}
+.admin-category-tab.active {
+  transform: scale(1.05);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+}
+
+/* Favorite section */
+.favorite-section {
+  margin-bottom: 20px;
+}
+.favorite-section h3 {
+  color: var(--primary);
+  margin-bottom: 15px;
+  text-align: center;
+}
+.favorite-empty {
+  text-align: center;
+  padding: 20px;
+  color: var(--text-dark);
+  font-style: italic;
+}
+
+/* Forgot password modal */
+.forgot-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 2000;
+  justify-content: center;
+  align-items: center;
+}
+.forgot-content {
+  background: var(--text-light);
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 8px 25px rgba(233, 30, 99, 0.3);
+  border: 1px solid var(--light-pink);
+  color: var(--text-dark);
+}
+.forgot-content h3 {
+  color: var(--primary);
+  margin-bottom: 15px;
+  text-align: center;
+}
+.forgot-content input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid var(--light-pink);
+  border-radius: 6px;
+  font-size: 14px;
+  background: var(--text-light);
+  color: var(--text-dark);
+}
+.forgot-content input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(233, 30, 99, 0.2);
+}
+.forgot-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+.forgot-buttons button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.confirm-reset {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  color: var(--text-light);
+  box-shadow: 0 3px 8px rgba(233, 30, 99, 0.3);
+}
+.confirm-reset:hover {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(233, 30, 99, 0.4);
+}
+.cancel-reset {
+  background: var(--light-pink);
+  color: var(--text-dark);
+  border: 1px solid var(--light-pink);
+}
+.cancel-reset:hover {
+  background: #f0a8ca;
+  transform: translateY(-2px);
+}
+
+/* Color Customization Panel */
+.color-customization-panel {
+  background: rgba(233, 30, 99, 0.05);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border: 1px solid var(--light-pink);
+}
+.color-customization-panel h4 {
+  margin-top: 0;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+.color-picker-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.color-picker-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.color-picker-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-dark);
+  min-width: 120px;
+}
+.color-picker {
+  width: 40px;
+  height: 30px;
+  border: 1px solid var(--light-pink);
+  border-radius: 4px;
+  cursor: pointer;
+}
+.color-buttons {
+  display: flex;
+  gap: 10px;
+}
+.color-buttons button {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.save-colors {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  color: var(--text-light);
+  box-shadow: 0 2px 5px rgba(233, 30, 99, 0.3);
+}
+.save-colors:hover {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(233, 30, 99, 0.4);
+}
+.reset-colors {
+  background: var(--light-pink);
+  color: var(--text-dark);
+  border: 1px solid var(--light-pink);
+}
+.reset-colors:hover {
+  background: #f0a8ca;
+  transform: translateY(-2px);
+}
+
+/* All Products Banner */
+.all-products-banner {
+  background: linear-gradient(135deg, var(--all-color) 0%, #7b1fa2 100%);
+  color: white;
+  text-align: center;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(156, 39, 176, 0.3);
+}
+
+/* Admin Dashboard Overview Styles */
+.admin-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.overview-card {
+  background: var(--text-light);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 3px 10px rgba(233, 30, 99, 0.1);
+  border: 1px solid var(--light-pink);
+  text-align: center;
+  transition: 0.3s;
+}
+
+.overview-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(233, 30, 99, 0.2);
+}
+
+.overview-card h3 {
+  color: var(--primary);
+  margin-top: 0;
+  font-size: 16px;
+}
+
+.overview-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 10px 0;
+}
+
+.overview-change {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+.positive {
+  background: rgba(76, 175, 80, 0.2);
+  color: #2e7d32;
+}
+
+.negative {
+  background: rgba(244, 67, 54, 0.2);
+  color: #c62828;
+}
+
+.neutral {
+  background: rgba(158, 158, 158, 0.2);
+  color: #616161;
+}
+
+.overview-period {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+  gap: 10px;
+}
+
+.period-btn {
+  padding: 6px 12px;
+  border: 1px solid var(--light-pink);
+  background: var(--text-light);
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.period-btn.active {
+  background: var(--primary);
+  color: var(--text-light);
+  border-color: var(--primary);
+}
+
+.inventory-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--text-light);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(233, 30, 99, 0.1);
+  margin-bottom: 15px;
+  font-size: 13px;
+  border: 1px solid var(--light-pink);
+}
+
+.inventory-table th, .inventory-table td {
+  border-bottom: 1px solid var(--light-pink);
+  padding: 8px;
+  text-align: center;
+  color: var(--text-dark);
+}
+
+.inventory-table th {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  color: var(--text-light);
+  font-size: 13px;
+}
+
+.inventory-table tr:last-child td {
+  border-bottom: none;
+}
+
+.low-stock {
+  color: #f44336;
+  font-weight: 600;
+}
+
+.medium-stock {
+  color: #ff9800;
+  font-weight: 600;
+}
+
+.high-stock {
+  color: #4caf50;
+  font-weight: 600;
+}
+
+.chart-container {
+  background: var(--text-light);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 3px 10px rgba(233, 30, 99, 0.1);
+  border: 1px solid var(--light-pink);
+  margin-bottom: 20px;
+}
+
+.chart-container h3 {
+  color: var(--primary);
+  margin-top: 0;
+  text-align: center;
+}
+
+.sales-chart {
+  height: 300px;
+  width: 100%;
+  position: relative;
+}
+
+.chart-bar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  height: 250px;
+  margin-top: 20px;
+}
+
+.bar {
+  width: 40px;
+  background: linear-gradient(to top, var(--primary) 0%, var(--accent) 100%);
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  transition: 0.3s;
+}
+
+.bar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(233, 30, 99, 0.3);
+}
+
+.bar-label {
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-dark);
+}
+
+.bar-value {
+  position: absolute;
+  top: -25px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.chart-legend {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  gap: 20px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+.top-products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.top-product-card {
+  background: rgba(233, 30, 99, 0.05);
+  border-radius: 8px;
+  padding: 15px;
+  border: 1px solid var(--light-pink);
+  text-align: center;
+}
+
+.top-product-card img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.top-product-card h4 {
+  margin: 5px 0;
+  font-size: 14px;
+  color: var(--text-dark);
+}
+
+.top-product-card p {
+  margin: 3px 0;
+  font-size: 13px;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.top-product-card .sales-count {
+  font-size: 12px;
+  color: var(--text-dark);
+}
+</style>
+</head>
+<body>
+
+<header>
+  <img src="https://i.pinimg.com/736x/46/f4/78/46f4787db9555cac9e752cf377bb0a51.jpg" alt="Lovely Little Things Logo" class="header-logo">
+  Lovely Little Things - Fashion & Beauty
+  <button class="logoutBtn" onclick="logout()">Logout</button>
+</header>
+
+<div id="toast"></div>
+
+<!-- Payment Modal -->
+<div id="paymentModal" class="payment-modal">
+  <div class="payment-content">
+    <h3 id="paymentModalTitle">Checkout Summary</h3>
+    <div id="paymentModalContent">
+      <!-- Content will be dynamically filled -->
+    </div>
+    <div class="payment-buttons">
+      <button class="confirm-pay" onclick="confirmPayment()">Confirm Order</button>
+      <button class="cancel-pay" onclick="closePaymentModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Forgot Password Modal -->
+<div id="forgotModal" class="forgot-modal">
+  <div class="forgot-content">
+    <h3>Reset Password</h3>
+    <p>Enter your username to reset your password:</p>
+    <input type="text" id="forgotUsername" placeholder="Username">
+    <div class="forgot-buttons">
+      <button class="confirm-reset" onclick="resetPassword()">Reset Password</button>
+      <button class="cancel-reset" onclick="closeForgotModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div id="loginDiv">
+  <div class="login-left">
+    <div style="display:flex; flex-direction:column; align-items:center;">
+      <input type="text" id="username" placeholder="Username">
+      <input type="password" id="password" placeholder="Password">
+      
+      <div id="customerPasswordInfo" class="password-requirement" style="display: none;">
+        Password must be at least 8 characters with letters
+      </div>
+      
+      <select id="role" onchange="togglePasswordInfo()">
+        <option value="customer">Customer</option>
+        <option value="staff">Staff</option>
+        <option value="admin">Admin</option>
+      </select>
+      <button onclick="login()">Login</button>
+      <div class="register-link">
+        Don't have an account? <a href="#" onclick="showRegister()">Register here</a>
+      </div>
+      <div class="forgot-password">
+        <a href="#" onclick="showForgotModal()">Forgot Password?</a>
+      </div>
+    </div>
+    
+    <div id="registerDiv">
+      <input type="text" id="regUsername" placeholder="Username">
+      <input type="email" id="regEmail" placeholder="Email">
+      <input type="tel" id="regPhone" placeholder="Phone Number">
+      <select id="regAddress">
+        <option value="">Select Address</option>
+        <option value="Anilao II, Mabini Batangas">Anilao II, Mabini Batangas</option>
+        <option value="Anilao I, Mabini Batangas">Anilao I, Mabini Batangas</option>
+        <option value="Bagalangit, Mabini Batangas">Bagalangit, Mabini Batangas</option>
+        <option value="Bulacan, Mabini Batangas">Bulacan, Mabini Batangas</option>
+        <option value="Calamias, Mabini Batangas">Calamias, Mabini Batangas</option>
+        <option value="Estrella, Mabini Batangas">Estrella, Mabini Batangas</option>
+        <option value="Gasang, Mabini Batangas">Gasang, Mabini Batangas</option>
+        <option value="Laurel, Mabini Batangas">Laurel, Mabini Batangas</option>
+        <option value="Ligaya, Mabini Batangas">Ligaya, Mabini Batangas</option>
+        <option value="Mainaga, Mabini Batangas">Mainaga, Mabini Batangas</option>
+        <option value="Mainit, Mabini Batangas">Mainit, Mabini Batangas</option>
+        <option value="Majuben, Mabini Batangas">Majuben, Mabini Batangas</option>
+        <option value="Malimatoc I, Mabini Batangas">Malimatoc I, Mabini Batangas</option>
+        <option value="Malimatoc II, Mabini Batangas">Malimatoc II, Mabini Batangas</option>
+        <option value="Nag-Iba, Mabini Batangas">Nag-Iba, Mabini Batangas</option>
+        <option value="Pilahan, Mabini Batangas">Pilahan, Mabini Batangas</option>
+        <option value="Poblacion, Mabini Batangas">Poblacion, Mabini Batangas</option>
+        <option value="Pulang Lupa, Mabini Batangas">Pulang Lupa, Mabini Batangas</option>
+        <option value="Pulong Anahao, Mabini Batangas">Pulong Anahao, Mabini Batangas</option>
+        <option value="Pulong Balibaguhan, Mabini Batangas">Pulong Balibaguhan, Mabini Batangas</option>
+        <option value="Pulong Niogan, Mabini Batangas">Pulong Niogan, Mabini Batangas</option>
+        <option value="Saguing, Mabini Batangas">Saguing, Mabini Batangas</option>
+        <option value="Sampaguita, Mabini Batangas">Sampaguita, Mabini Batangas</option>
+        <option value="San Francisco, Mabini Batangas">San Francisco, Mabini Batangas</option>
+        <option value="San Jose, Mabini Batangas">San Jose, Mabini Batangas</option>
+        <option value="San Juan, Mabini Batangas">San Juan, Mabini Batangas</option>
+        <option value="San Teodoro, Mabini Batangas">San Teodoro, Mabini Batangas</option>
+        <option value="Santa Ana, Mabini Batangas">Santa Ana, Mabini Batangas</option>
+        <option value="Santa Mesa, Mabini Batangas">Santa Mesa, Mabini Batangas</option>
+        <option value="Santo Niño, Mabini Batangas">Santo Niño, Mabini Batangas</option>
+        <option value="Sili, Mabini Batangas">Sili, Mabini Batangas</option>
+        <option value="Solo, Mabini Batangas">Solo, Mabini Batangas</option>
+        <option value="Talaga Proper, Mabini Batangas">Talaga Proper, Mabini Batangas</option>
+        <option value="Talaga East, Mabini Batangas">Talaga East, Mabini Batangas</option>
+      </select>
+      <input type="password" id="regPassword" placeholder="Password (8+ characters with letters)">
+      <input type="password" id="regConfirmPassword" placeholder="Confirm Password (8+ characters with letters)">
+      <div class="password-requirement">Password must be at least 8 characters and contain letters</div>
+      <p style="text-align: center; font-size: 14px; color: #c48b9f; margin: 0;">
+        Note: Registration is for customers only
+      </p>
+      <button onclick="register()">Register as Customer</button>
+      <div class="back-to-login">
+        Already have an account? <a href="#" onclick="showLogin()">Login here</a>
+      </div>
+    </div>
+
+    <div class="mission-vision-box">
+      <p>
+        <strong>Mission:</strong> Provide the best fashion and beauty products to every customer, ensuring quality, style, and satisfaction in every purchase.<br><br>
+        <strong>Vision:</strong> Be the most loved fashion and beauty destination, spreading confidence and style across the community.
+      </p>
+    </div>
+
+    <!-- Social Media Icons -->
+    <div class="social-icons">
+      <a href="https://facebook.com" target="_blank"><img src="https://i.pinimg.com/736x/17/a1/37/17a137f792637affc382763e9746ea91.jpg" alt="Facebook"></a>
+      <a href="https://instagram.com" target="_blank"><img src="https://i.pinimg.com/1200x/3c/92/48/3c92483e14081890c0b805ce64c24ece.jpg" alt="Instagram"></a>
+      <a href="https://tiktok.com" target="_blank"><img src="https://i.pinimg.com/736x/cc/05/12/cc05127fa83c5be40b41847d4ba5d51a.jpg" alt="TikTok"></a>
+    </div>
+  </div>
+
+  <img id="loginImage" src="https://i.pinimg.com/1200x/5f/ce/67/5fce670ae273142952b2a1b6273c0186.jpg" alt="Lovely Little Things Fashion & Beauty">
+</div>
+
+<!-- DASHBOARD (Customer, Staff, Admin Sections) -->
+<div id="dashboard">
+  <!-- Customer Section -->
+  <div id="customerSection">
+    <div class="section-header">
+      <img src="https://i.pinimg.com/736x/46/f4/78/46f4787db9555cac9e752cf377bb0a51.jpg" alt="Lovely Little Things Logo" class="section-logo">
+      <h2>Products</h2>
+    </div>
+    
+    <!-- Favorite Products Section -->
+    <div class="favorite-section" id="favoriteSection" style="display: none;">
+      <h3>⭐ Your Favorite Products</h3>
+      <div class="menu-grid" id="favoriteGrid"></div>
+    </div>
+    
+    <!-- Category Tabs -->
+    <div class="category-tabs">
+      <div class="category-tab all active" onclick="filterProducts('all')">All Products</div>
+      <div class="category-tab men" onclick="filterProducts('men')">Men's Fashion</div>
+      <div class="category-tab women" onclick="filterProducts('women')">Women's Fashion</div>
+      <div class="category-tab kids" onclick="filterProducts('kids')">Kids' Collection</div>
+      <div class="category-tab makeup" onclick="filterProducts('makeup')">Beauty & Makeup</div>
+      <div class="category-tab bags" onclick="filterProducts('bags')">Bags & Accessories</div>
+      <div class="category-tab shoes" onclick="filterProducts('shoes')">Shoes</div>
+      <div class="category-tab electronics" onclick="filterProducts('electronics')">Electronics</div>
+      <div class="category-tab home" onclick="filterProducts('home')">Home & Living</div>
+    </div>
+    
+    <!-- Category Banner -->
+    <div id="categoryBannerContainer">
+      <img id="categoryBanner" class="category-banner" src="https://i.pinimg.com/1200x/2a/4d/1e/2a4d1e5e5e5e5e5e5e5e5e5e5e5e5e5e.jpg" alt="All Products Banner">
+    </div>
+    
+    <div class="menu-grid" id="menuGrid"></div>
+
+    <div class="cart" id="cartDiv">
+      <span class="cart-icon">🛒</span>
+      <span class="cart-badge" id="cartCount">0</span>
+      <h3>Your Cart</h3>
+      <div class="cart-items-wrapper" id="cartItems"></div>
+      <div class="cart-total">Subtotal: ₱<span id="cartTotal">0</span></div>
+      
+      <!-- Address Selection -->
+      <select id="deliveryAddress" class="address" onchange="updateShippingFee()">
+        <option value="">Select Delivery Address</option>
+        <!-- Options will be populated from user data -->
+      </select>
+      
+      <!-- Delivery Service Selection - UPDATED WITH NEW SERVICES -->
+      <select id="deliveryService" class="delivery-service" onchange="updateShippingFee()">
+        <option value="">Select Delivery Service</option>
+        <option value="J&T Express">J&T Express</option>
+        <option value="JRS Express">JRS Express</option>
+        <option value="LBC Express">LBC Express</option>
+        <option value="Ninja Van">Ninja Van</option>
+        <option value="Lalamove">Lalamove</option>
+        <option value="Flash Express">Flash Express</option>
+        <option value="Pickup / Store">Pickup / Store</option>
+      </select>
+      
+      <!-- Shipping Fee Display -->
+      <div id="shippingFeeDisplay" class="shipping-fee" style="display: none;">
+        Shipping Fee: ₱<span id="shippingFee">0</span>
+      </div>
+      
+      <!-- Total with Shipping -->
+      <div class="cart-total" style="color: var(--primary);">Total: ₱<span id="totalWithShipping">0</span></div>
+      
+      <select id="paymentMethod" class="payment" onchange="toggleReferenceInput()">
+        <option value="Cash on Delivery (COD)">Cash on Delivery (COD)</option>
+        <option value="GCash">GCash</option>
+        <option value="Credit Card">Credit Card</option>
+      </select>
+      <input type="text" id="referenceNumber" class="reference-input" placeholder="Reference Number">
+      <button class="pay" onclick="pay()">Checkout</button>
+    </div>
+
+    <div id="customerOrders"></div>
+
+    <!-- Mission & Vision Section -->
+    <div class="dashboard-mission-vision">
+      <h3>Our Mission & Vision</h3>
+      <p>
+        <strong>Mission:</strong> Provide the best fashion and beauty products to every customer, ensuring quality, style, and satisfaction in every purchase.<br><br>
+        <strong>Vision:</strong> Be the most loved fashion and beauty destination, spreading confidence and style across the community.
+      </p>
+    </div>
+
+    <!-- Visit Us Info -->
+    <div class="visit-box">
+      <strong>Visit Us</strong><br>
+      456 Fashion Avenue, Style Town, ST 67890<br>
+      📞 +63 912 345 6789<br>
+      ✉️ contact@lovelylittlethings.com<br>
+      🕖 Open Every Day: 9:00 AM – 9:00 PM
+    </div>
+  </div>
+
+  <!-- Staff Section -->
+  <div id="staffSection">
+    <div class="section-header">
+      <img src="https://i.pinimg.com/736x/46/f4/78/46f4787db9555cac9e752cf377bb0a51.jpg" alt="Lovely Little Things Logo" class="section-logo">
+      <h2>Orders</h2>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Customer</th>
+          <th>Email</th>
+          <th>Address</th>
+          <th>Items</th>
+          <th>Subtotal</th>
+          <th>Delivery Service</th>
+          <th>Shipping Fee</th>
+          <th>Total</th>
+          <th>Status</th>
+          <th>Payment Method</th>
+          <th>Reference No.</th>
+          <th>Update Status</th>
+        </tr>
+      </thead>
+      <tbody id="ordersTable"></tbody>
+    </table>
+
+    <!-- Mission & Vision Section -->
+    <div class="dashboard-mission-vision">
+      <h3>Our Mission & Vision</h3>
+      <p>
+        <strong>Mission:</strong> Provide the best fashion and beauty products to every customer, ensuring quality, style, and satisfaction in every purchase.<br><br>
+        <strong>Vision:</strong> Be the most loved fashion and beauty destination, spreading confidence and style across the community.
+      </p>
+    </div>
+
+    <!-- Visit Us Info -->
+    <div class="visit-box">
+      <strong>Visit Us</strong><br>
+      456 Fashion Avenue, Style Town, ST 67890<br>
+      📞 +63 912 345 6789<br>
+      ✉️ contact@lovelylittlethings.com<br>
+      🕖 Open Every Day: 9:00 AM – 9:00 PM
+    </div>
+  </div>
+
+  <!-- Admin Section -->
+  <div id="adminSection">
+    <!-- Admin Dashboard Overview -->
+    <div class="admin-panel">
+      <div class="section-header">
+        <img src="https://i.pinimg.com/736x/99/1b/3e/991b3e2ae56157c357242f37839d2ab0.jpg" alt="Lovely Little Things Logo" class="section-logo">
+        <h2>Dashboard Overview</h2>
+      </div>
+      
+      <div class="overview-period">
+        <button class="period-btn active" onclick="changeOverviewPeriod('today')">Today</button>
+        <button class="period-btn" onclick="changeOverviewPeriod('week')">7 Days</button>
+        <button class="period-btn" onclick="changeOverviewPeriod('month')">1 Month</button>
+      </div>
+      
+      <div class="admin-overview" id="adminOverview">
+        <!-- Overview cards will be populated here -->
+      </div>
+      
+      <div class="chart-container">
+        <h3>Sales Overview</h3>
+        <div class="sales-chart" id="salesChart">
+          <!-- Chart will be populated here -->
+        </div>
+      </div>
+      
+      <div class="chart-container">
+        <h3>Top Selling Products</h3>
+        <div class="top-products" id="topProducts">
+          <!-- Top products will be populated here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Inventory Management -->
+    <div class="admin-panel">
+      <div class="section-header">
+        <img src="https://i.pinimg.com/736x/70/19/a3/7019a3e64ce09f39076009d0ccae85e0.jpg" alt="Lovely Little Things Logo" class="section-logo">
+        <h2>Inventory Management</h2>
+      </div>
+      
+      <table class="inventory-table">
+        <thead>
+          <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Status</th>
+            <th>Sales (30 Days)</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="inventoryTable">
+          <!-- Inventory items will be populated here -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Color Customization Panel -->
+    <div class="admin-panel">
+      <div class="section-header">
+        <img src="https://i.pinimg.com/736x/46/f4/78/46f4787db9555cac9e752cf377bb0a51.jpg" alt="Lovely Little Things Logo" class="section-logo">
+        <h2>Color Customization</h2>
+      </div>
+      <div class="color-customization-panel">
+        <h4>Customize Shop Colors</h4>
+        <div class="color-picker-group">
+          <div class="color-picker-item">
+            <span class="color-picker-label">Primary Color:</span>
+            <input type="color" id="primaryColor" class="color-picker" value="#e91e63">
+          </div>
+          <div class="color-picker-item">
+            <span class="color-picker-label">Secondary Color:</span>
+            <input type="color" id="secondaryColor" class="color-picker" value="#fce4ec">
+          </div>
+          <div class="color-picker-item">
+            <span class="color-picker-label">Accent Color:</span>
+            <input type="color" id="accentColor" class="color-picker" value="#c2185b">
+          </div>
+          <div class="color-picker-item">
+            <span class="color-picker-label">Light Pink:</span>
+            <input type="color" id="lightPinkColor" class="color-picker" value="#f8bbd9">
+          </div>
+          <div class="color-picker-item">
+            <span class="color-picker-label">Text Dark:</span>
+            <input type="color" id="textDarkColor" class="color-picker" value="#880e4f">
+          </div>
+        </div>
+        <div class="color-buttons">
+          <button class="save-colors" onclick="saveCustomColors()">Save Colors</button>
+          <button class="reset-colors" onclick="resetColors()">Reset to Default</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manage Users Panel -->
+    <div class="admin-panel">
+      <div class="section-header">
+        <img src="https://i.pinimg.com/736x/46/f4/78/46f4787db9555cac9e752cf377bb0a51.jpg" alt="Lovely Little Things Logo" class="section-logo">
+        <h2>Manage Users</h2>
+      </div>
+      <div class="admin-form">
+        <h4>Add New User</h4>
+        <input type="text" id="newUsername" placeholder="Username">
+        <input type="email" id="newEmail" placeholder="Email">
+        <input type="tel" id="newPhone" placeholder="Phone Number">
+        <select id="newAddress">
+          <option value="">Select Address</option>
+          <option value="Anilao II, Mabini Batangas">Anilao II, Mabini Batangas</option>
+          <option value="Anilao I, Mabini Batangas">Anilao I, Mabini Batangas</option>
+          <option value="Bagalangit, Mabini Batangas">Bagalangit, Mabini Batangas</option>
+          <option value="Bulacan, Mabini Batangas">Bulacan, Mabini Batangas</option>
+          <option value="Calamias, Mabini Batangas">Calamias, Mabini Batangas</option>
+          <option value="Estrella, Mabini Batangas">Estrella, Mabini Batangas</option>
+          <option value="Gasang, Mabini Batangas">Gasang, Mabini Batangas</option>
+          <option value="Laurel, Mabini Batangas">Laurel, Mabini Batangas</option>
+          <option value="Ligaya, Mabini Batangas">Ligaya, Mabini Batangas</option>
+          <option value="Mainaga, Mabini Batangas">Mainaga, Mabini Batangas</option>
+          <option value="Mainit, Mabini Batangas">Mainit, Mabini Batangas</option>
+          <option value="Majuben, Mabini Batangas">Majuben, Mabini Batangas</option>
+          <option value="Malimatoc I, Mabini Batangas">Malimatoc I, Mabini Batangas</option>
+          <option value="Malimatoc II, Mabini Batangas">Malimatoc II, Mabini Batangas</option>
+          <option value="Nag-Iba, Mabini Batangas">Nag-Iba, Mabini Batangas</option>
+          <option value="Pilahan, Mabini Batangas">Pilahan, Mabini Batangas</option>
+          <option value="Poblacion, Mabini Batangas">Poblacion, Mabini Batangas</option>
+          <option value="Pulang Lupa, Mabini Batangas">Pulang Lupa, Mabini Batangas</option>
+          <option value="Pulong Anahao, Mabini Batangas">Pulong Anahao, Mabini Batangas</option>
+          <option value="Pulong Balibaguhan, Mabini Batangas">Pulong Balibaguhan, Mabini Batangas</option>
+          <option value="Pulong Niogan, Mabini Batangas">Pulong Niogan, Mabini Batangas</option>
+          <option value="Saguing, Mabini Batangas">Saguing, Mabini Batangas</option>
+          <option value="Sampaguita, Mabini Batangas">Sampaguita, Mabini Batangas</option>
+          <option value="San Francisco, Mabini Batangas">San Francisco, Mabini Batangas</option>
+          <option value="San Jose, Mabini Batangas">San Jose, Mabini Batangas</option>
+          <option value="San Juan, Mabini Batangas">San Juan, Mabini Batangas</option>
+          <option value="San Teodoro, Mabini Batangas">San Teodoro, Mabini Batangas</option>
+          <option value="Santa Ana, Mabini Batangas">Santa Ana, Mabini Batangas</option>
+          <option value="Santa Mesa, Mabini Batangas">Santa Mesa, Mabini Batangas</option>
+          <option value="Santo Niño, Mabini Batangas">Santo Niño, Mabini Batangas</option>
+          <option value="Sili, Mabini Batangas">Sili, Mabini Batangas</option>
+          <option value="Solo, Mabini Batangas">Solo, Mabini Batangas</option>
+          <option value="Talaga Proper, Mabini Batangas">Talaga Proper, Mabini Batangas</option>
+          <option value="Talaga East, Mabini Batangas">Talaga East, Mabini Batangas</option>
+        </select>
+        <input type="password" id="newPassword" placeholder="Password (8+ characters with letters)">
+        <div class="password-requirement">Password must be at least 8 characters and contain letters</div>
+        <select id="newRole">
+          <option value="staff">Staff</option>
+          <option value="admin">Admin</option>
+        </select>
+        <button onclick="addUser()">Add User</button>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Username</th><th>Email</th><th>Phone</th><th>Address</th><th>Role</th><th>Action</th></tr>
+        </thead>
+        <tbody id="usersTable"></tbody>
+      </table>
+    </div>
+
+    <!-- Manage Products Panel -->
+    <div class="admin-panel">
+      <div class="section-header">
+        <img src="https://i.pinimg.com/736x/46/f4/78/46f4787db9555cac9e752cf377bb0a51.jpg" alt="Lovely Little Things Logo" class="section-logo">
+        <h2>Manage Products</h2>
+      </div>
+      
+      <!-- Admin Category Tabs -->
+      <div class="admin-category-tabs">
+        <div class="admin-category-tab all active" onclick="filterAdminProducts('all')">All Products</div>
+        <div class="admin-category-tab men" onclick="filterAdminProducts('men')">Men's Fashion</div>
+        <div class="admin-category-tab women" onclick="filterAdminProducts('women')">Women's Fashion</div>
+        <div class="admin-category-tab kids" onclick="filterAdminProducts('kids')">Kids' Collection</div>
+        <div class="admin-category-tab makeup" onclick="filterAdminProducts('makeup')">Beauty & Makeup</div>
+        <div class="admin-category-tab bags" onclick="filterAdminProducts('bags')">Bags & Accessories</div>
+        <div class="admin-category-tab shoes" onclick="filterAdminProducts('shoes')">Shoes</div>
+        <div class="admin-category-tab electronics" onclick="filterAdminProducts('electronics')">Electronics</div>
+        <div class="admin-category-tab home" onclick="filterAdminProducts('home')">Home & Living</div>
+      </div>
+      
+      <div class="admin-form">
+        <h4>Add New Product</h4>
+        <input type="text" id="menuName" placeholder="Product Name">
+        <input type="number" id="menuPrice" placeholder="Price">
+        <select id="productCategory">
+          <option value="men">Men's Fashion</option>
+          <option value="women">Women's Fashion</option>
+          <option value="kids">Kids' Collection</option>
+          <option value="makeup">Beauty & Makeup</option>
+          <option value="bags">Bags & Accessories</option>
+          <option value="shoes">Shoes</option>
+          <option value="electronics">Electronics</option>
+          <option value="home">Home & Living</option>
+        </select>
+        <input type="file" id="menuImage">
+        <button onclick="addMenu()">Add Product</button>
+      </div>
+      <div class="menu-grid" id="adminMenuGrid"></div>
+    </div>
+
+    <!-- Customer Orders Panel -->
+    <div class="admin-panel">
+      <div class="section-header">
+        <img src="https://i.pinimg.com/736x/46/f4/78/46f4787db9555cac9e752cf377bb0a51.jpg" alt="Lovely Little Things Logo" class="section-logo">
+        <h2>Customer Orders</h2>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Items</th>
+            <th>Subtotal</th>
+            <th>Delivery Service</th>
+            <th>Shipping Fee</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Payment Method</th>
+            <th>Reference No.</th>
+          </tr>
+        </thead>
+        <tbody id="adminOrdersTable"></tbody>
+      </table>
+    </div>
+
+    <!-- Mission & Vision Section -->
+    <div class="dashboard-mission-vision">
+      <h3>Our Mission & Vision</h3>
+      <p>
+        <strong>Mission:</strong> Provide the best fashion and beauty products to every customer, ensuring quality, style, and satisfaction in every purchase.<br><br>
+        <strong>Vision:</strong> Be the most loved fashion and beauty destination, spreading confidence and style across the community.
+      </p>
+    </div>
+
+    <!-- Visit Us Info -->
+    <div class="visit-box">
+      <strong>Visit Us</strong><br>
+      456 Fashion Avenue, Style Town, ST 67890<br>
+      📞 +63 912 345 6789<br>
+      ✉️ contact@lovelylittlethings.com<br>
+      🕖 Open Every Day: 9:00 AM – 9:00 PM
+    </div>
+  </div>
+</div>
+
+<script>
+// Users - Only predefined users for customer
+let users = [
+  {username:'customer', password:'password123', role:'customer', email:'customer@example.com', phone:'09123456789', address:'Anilao II, Mabini Batangas'}
+  // Staff and Admin users are created dynamically on login
+];
+
+// Product Items - 96 items across 8 categories (12 per category)
+let menuItems = [
+  // Men's Fashion (12 items)
+  {id:1,name:'Classic White Shirt',price:450,image:'https://i.pinimg.com/1200x/c1/6d/8b/c16d8bb3b7b3d548550e7c865d2727ac.jpg',category:'men', stock: 25, sales: 15},
+  {id:2,name:'Slim Fit Jeans',price:850,image:'https://i.pinimg.com/1200x/1c/e0/53/1ce053123bfaf353dcd5e51611e539ea.jpg',category:'men', stock: 18, sales: 22},
+  {id:3,name:'Leather Jacket',price:2500,image:'https://i.pinimg.com/1200x/e7/3e/44/e73e4451edecebe1d7e5a17a5e9eb67a.jpg',category:'men', stock: 8, sales: 5},
+  {id:4,name:'Sports Sneakers',price:1200,image:'https://i.pinimg.com/736x/ab/da/4a/abda4a56c887e2902b96fc7c3da4789d.jpg',category:'men', stock: 12, sales: 18},
+  {id:5,name:'Casual Blazer',price:1800,image:'https://i.pinimg.com/1200x/84/87/38/848738eb565c19e1f3824202c2e9a24a.jpg',category:'men', stock: 5, sales: 3},
+  {id:6,name:'Polo Shirt',price:550,image:'https://i.pinimg.com/1200x/b0/62/75/b062755b35dc8436eb655c41002dd51a.jpg',category:'men', stock: 30, sales: 25},
+  {id:7,name:'Chino Pants',price:750,image:'https://i.pinimg.com/736x/a1/06/83/a1068341448e7fc4def662c46425818a.jpg',category:'men', stock: 22, sales: 17},
+  {id:8,name:'Leather Belt',price:350,image:'https://i.pinimg.com/1200x/e0/cc/e1/e0cce177845982e05503889fc3e7d202.jpg',category:'men', stock: 40, sales: 32},
+  {id:9,name:'Formal Suit',price:3500,image:'https://i.pinimg.com/1200x/07/82/bd/0782bdcacaed23b83487d6eadea166da.jpg',category:'men', stock: 3, sales: 2},
+  {id:10,name:'Winter Coat',price:2800,image:'https://i.pinimg.com/1200x/3b/32/4f/3b324f54052cfaa9de0afb1dc042f265.jpg',category:'men', stock: 7, sales: 4},
+  {id:11,name:'Casual Shorts',price:500,image:'https://i.pinimg.com/1200x/b2/b3/c7/b2b3c7b80f109b11f535f7cec199978c.jpg',category:'men', stock: 28, sales: 20},
+  {id:12,name:'Swim Trunks',price:400,image:'https://i.pinimg.com/736x/6d/91/92/6d91924463f98f96dc8ff0642aa76567.jpg',category:'men', stock: 15, sales: 12},
+  
+  // Women's Fashion (12 items)
+  {id:13,name:'Floral Summer Dress',price:1200,image:'https://i.pinimg.com/736x/d8/c9/62/d8c962ec3495d6369a8ae5b9b6d0c254.jpg',category:'women', stock: 20, sales: 28},
+  {id:14,name:'High-Waist Jeans',price:950,image:'https://i.pinimg.com/1200x/f9/e5/79/f9e57906926c6d6f58edec5f0f716a17.jpg',category:'women', stock: 16, sales: 24},
+  {id:15,name:'Elegant Blouse',price:650,image:'https://i.pinimg.com/1200x/30/75/8d/30758d6bf6eab680ef16d90aec0489b2.jpg',category:'women', stock: 25, sales: 30},
+  {id:16,name:'Leather Handbag',price:1800,image:'https://i.pinimg.com/736x/14/13/ca/1413ca036d0fefa6e9ddc8c292e6dd55.jpg',category:'women', stock: 10, sales: 15},
+  {id:17,name:'Knit Sweater',price:850,image:'https://i.pinimg.com/736x/46/ad/22/46ad220cd92d78147d0904ed717f30f4.jpg',category:'women', stock: 18, sales: 22},
+  {id:18,name:'A-Line Skirt',price:700,image:'https://i.pinimg.com/1200x/e7/b1/c5/e7b1c52a91be3c9dc102437440657ab0.jpg',category:'women', stock: 22, sales: 18},
+  {id:19,name:'Evening Gown',price:3500,image:'https://i.pinimg.com/736x/42/fb/d3/42fbd3f58334b9ffaad254923b4411aa.jpg',category:'women', stock: 4, sales: 3},
+  {id:20,name:'Denim Jacket',price:1200,image:'https://i.pinimg.com/736x/b1/12/d6/b112d60fedc68f4dcdd3904f134a6ac2.jpg',category:'women', stock: 12, sales: 16},
+  {id:21,name:'Office Blazer',price:1500,image:'https://i.pinimg.com/736x/6a/13/28/6a1328f35b9e76ab53869d6172e3bd35.jpg',category:'women', stock: 8, sales: 10},
+  {id:22,name:'Maxi Dress',price:1100,image:'https://i.pinimg.com/1200x/37/d3/3a/37d33aee4ace6a768b64900da11dc64b.jpg',category:'women', stock: 15, sales: 20},
+  {id:23,name:'Leggings',price:450,image:'https://i.pinimg.com/1200x/fb/36/38/fb36381569a93e15b375645816ba647b.jpg',category:'women', stock: 35, sales: 40},
+  {id:24,name:'Cardigan',price:800,image:'https://i.pinimg.com/736x/8f/95/83/8f9583d17fb34c3582c9b6d2a6c1745d.jpg',category:'women', stock: 20, sales: 25},
+  
+  // Kids' Collection (12 items)
+  {id:25,name:'Cartoon T-Shirt',price:300,image:'https://i.pinimg.com/1200x/fb/2a/cf/fb2acfba3359950b522fe60f93be8554.jpg',category:'kids', stock: 40, sales: 35},
+  {id:26,name:'Kids Jeans',price:450,image:'https://i.pinimg.com/1200x/1e/a8/04/1ea804bba1c0440ce606526bd9bfa4a0.jpg',category:'kids', stock: 25, sales: 20},
+  {id:27,name:'Colorful Sneakers',price:600,image:'https://i.pinimg.com/736x/6f/3c/49/6f3c49919d6ab64215530607edc96e52.jpg',category:'kids', stock: 18, sales: 22},
+  {id:28,name:'Winter Jacket',price:850,image:'https://i.pinimg.com/1200x/24/cc/6b/24cc6b7e57bd99e0d707566b50592f31.jpg',category:'kids', stock: 12, sales: 8},
+  {id:29,name:'School Uniform',price:950,image:'https://i.pinimg.com/736x/a0/aa/14/a0aa140d45b32be8dfe80df278bac85c.jpg',category:'kids', stock: 30, sales: 25},
+  {id:30,name:'Party Dress',price:750,image:'https://i.pinimg.com/1200x/c6/a9/22/c6a9229ecb146a214078470cc5454301.jpg',category:'kids', stock: 15, sales: 18},
+  {id:31,name:'Raincoat Set',price:550,image:'https://i.pinimg.com/1200x/62/19/5d/62195d209c1a2267d94914677ca5df1e.jpg',category:'kids', stock: 20, sales: 15},
+  {id:32,name:'Sports Set',price:800,image:'https://i.pinimg.com/1200x/0f/82/44/0f8244cc1cf4cf8c96d035504918a78e.jpg',category:'kids', stock: 22, sales: 18},
+  {id:33,name:'Kids Backpack',price:400,image:'https://i.pinimg.com/1200x/2d/53/02/2d530217fa26cae84779decab58f6043.jpg',category:'kids', stock: 35, sales: 30},
+  {id:34,name:'Pajama Set',price:350,image:'https://i.pinimg.com/1200x/24/f9/36/24f9361882816f920c8df230c944f54d.jpg',category:'kids', stock: 28, sales: 25},
+  {id:35,name:'Swimwear',price:300,image:'https://i.pinimg.com/1200x/ad/70/b1/ad70b14ffd050e876aa3e78064a00afd.jpg',category:'kids', stock: 20, sales: 15},
+  {id:36,name:'Baby Onesie',price:250,image:'https://i.pinimg.com/736x/a6/83/c1/a683c181f7c6248d0b84b562ed16e82f.jpg',category:'kids', stock: 45, sales: 40},
+  
+  // Beauty & Makeup (12 items)
+  {id:37,name:'Matte Lipstick Set',price:650,image:'https://i.pinimg.com/736x/59/4b/d0/594bd0dabd2a94328f24dd32b6b1f7a8.jpg',category:'makeup', stock: 25, sales: 30},
+  {id:38,name:'Foundation',price:850,image:'https://i.pinimg.com/1200x/b6/80/22/b68022bd84bac4ff33528fe5deb5f3d1.jpg',category:'makeup', stock: 18, sales: 22},
+  {id:39,name:'Eyeshadow Palette',price:1200,image:'https://i.pinimg.com/1200x/0a/b4/ab/0ab4ab5fac5756ede8b3d25fd45c9131.jpg',category:'makeup', stock: 15, sales: 20},
+  {id:40,name:'Makeup Brushes',price:550,image:'https://i.pinimg.com/1200x/95/8c/67/958c673a376d954388e4451eb0740d8a.jpg',category:'makeup', stock: 30, sales: 35},
+  {id:41,name:'Skincare Set',price:1800,image:'https://i.pinimg.com/1200x/cf/77/f5/cf77f566aaead0615a1ca274998727c4.jpg',category:'makeup', stock: 12, sales: 15},
+  {id:42,name:'Perfume',price:950,image:'https://i.pinimg.com/1200x/d2/c8/e4/d2c8e40a50fb583aa623d4767991c051.jpg',category:'makeup', stock: 20, sales: 18},
+  {id:43,name:'Nail Polish Set',price:450,image:'https://i.pinimg.com/1200x/61/b1/55/61b1559dddb9e6245557b97e174c32ba.jpg',category:'makeup', stock: 40, sales: 45},
+  {id:44,name:'Face Mask Pack',price:350,image:'https://i.pinimg.com/736x/33/c1/e0/33c1e08d97615d562f88f6a6cb7080a7.jpg',category:'makeup', stock: 35, sales: 40},
+  {id:45,name:'Makeup Remover',price:300,image:'https://i.pinimg.com/1200x/dd/8f/fa/dd8ffa7de9d7ab83a0495bc9e63f9164.jpg',category:'makeup', stock: 28, sales: 32},
+  {id:46,name:'Hair Serum',price:600,image:'https://i.pinimg.com/1200x/b7/66/fd/b766fd45e5024e12211f1ced678ba8c6.jpg',category:'makeup', stock: 22, sales: 25},
+  {id:47,name:'Body Lotion',price:400,image:'https://i.pinimg.com/1200x/8f/cc/80/8fcc80577b24f1198cdb0e463f559425.jpg',category:'makeup', stock: 30, sales: 35},
+  {id:48,name:'Sunscreen',price:350,image:'https://i.pinimg.com/1200x/7e/e4/fb/7ee4fb21004ca2fd75ada81e275374a0.jpg',category:'makeup', stock: 25, sales: 30},
+  
+  // Bags & Accessories (12 items)
+  {id:49,name:'Leather Tote Bag',price:1500,image:'https://i.pinimg.com/736x/ec/80/9f/ec809f866c45101db60b2a9b08db9cee.jpg',category:'bags', stock: 15, sales: 20},
+  {id:50,name:'Crossbody Bag',price:1200,image:'https://i.pinimg.com/1200x/c8/7a/15/c87a154e19c5cc6813d6494680fa556a.jpg',category:'bags', stock: 18, sales: 22},
+  {id:51,name:'Backpack',price:1100,image:'https://i.pinimg.com/1200x/bb/1d/a6/bb1da6928f40a3a36123b7b99c59f8f0.jpg',category:'bags', stock: 20, sales: 25},
+  {id:52,name:'Clutch Purse',price:800,image:'https://i.pinimg.com/736x/ca/b3/22/cab3224d609a6763eadeac2cca806b3c.jpg',category:'bags', stock: 25, sales: 20},
+  {id:53,name:'Wallet',price:600,image:'https://i.pinimg.com/1200x/66/e8/67/66e867a26c0adffcc7e6829a062dfbc9.jpg',category:'bags', stock: 30, sales: 35},
+  {id:54,name:'Sunglasses',price:700,image:'https://i.pinimg.com/1200x/9a/73/7a/9a737a4db0ce3d542015fbc87e79abe3.jpg',category:'bags', stock: 22, sales: 25},
+  {id:55,name:'Scarf',price:350,image:'https://i.pinimg.com/736x/7f/cb/3f/7fcb3f23ff0d16f2faafa566c37fbb20.jpg',category:'bags', stock: 35, sales: 40},
+  {id:56,name:'Belt',price:400,image:'https://i.pinimg.com/1200x/51/96/76/519676ef07d7c52779c803fa1da95197.jpg',category:'bags', stock: 28, sales: 30},
+  {id:57,name:'Jewelry Set',price:900,image:'https://i.pinimg.com/1200x/f8/74/aa/f874aa78b7915b4ce41710a4c824df2f.jpg',category:'bags', stock: 20, sales: 18},
+  {id:58,name:'Watch',price:1200,image:'https://i.pinimg.com/736x/2a/aa/f3/2aaaf31d89850f99d8c60aaeda2a8b36.jpg',category:'bags', stock: 15, sales: 12},
+  {id:59,name:'Hat',price:450,image:'https://i.pinimg.com/736x/09/e5/30/09e530d0043bf53bd5ea2b10cda61012.jpg',category:'bags', stock: 25, sales: 20},
+  {id:60,name:'Hair Accessories',price:200,image:'https://i.pinimg.com/736x/5f/1c/41/5f1c41852f4722d6551a0848622f658c.jpg',category:'bags', stock: 50, sales: 45},
+  
+  // Shoes (12 items)
+  {id:61,name:'Running Shoes',price:1200,image:'https://i.pinimg.com/1200x/d2/c3/3a/d2c33a58c6e7820e0d06317cfb4e7e8a.jpg',category:'shoes', stock: 20, sales: 25},
+  {id:62,name:'High Heels',price:1500,image:'https://i.pinimg.com/1200x/00/5b/3f/005b3f133dcb6bdc6180d07fec2f0119.jpg',category:'shoes', stock: 15, sales: 18},
+  {id:63,name:'Casual Sneakers',price:900,image:'https://i.pinimg.com/1200x/35/6c/90/356c90c9de6520452d548b8a13250ce5.jpg',category:'shoes', stock: 25, sales: 30},
+  {id:64,name:'Formal Shoes',price:1300,image:'https://i.pinimg.com/736x/fd/98/98/fd9898853348be05b5e339916ee1378c.jpg',category:'shoes', stock: 12, sales: 10},
+  {id:65,name:'Sandals',price:600,image:'https://i.pinimg.com/736x/4a/67/8b/4a678bf52f3991b34baaba55a06c6c61.jpg',category:'shoes', stock: 30, sales: 35},
+  {id:66,name:'Boots',price:1800,image:'https://i.pinimg.com/1200x/41/4d/f8/414df878b1c8413564dead9c5d22d0fa.jpg',category:'shoes', stock: 8, sales: 6},
+  {id:67,name:'Flip Flops',price:300,image:'https://i.pinimg.com/1200x/68/58/7e/68587e740b7d2f5fcb52beaf9b93489e.jpg',category:'shoes', stock: 40, sales: 45},
+  {id:68,name:'Sports Shoes',price:1100,image:'https://i.pinimg.com/1200x/e6/4e/0a/e64e0ab3e21ae050bc44504506f5942c.jpg',category:'shoes', stock: 18, sales: 22},
+  {id:69,name:'Loafers',price:800,image:'https://i.pinimg.com/736x/c6/c3/fe/c6c3fee84c4cd95144123803c8c9f3d6.jpg',category:'shoes', stock: 22, sales: 20},
+  {id:70,name:'Wedges',price:1000,image:'https://i.pinimg.com/736x/d6/e6/f7/d6e6f735ed04df0a06b2215b79dacc4b.jpg',category:'shoes', stock: 15, sales: 12},
+  {id:71,name:'Slippers',price:250,image:'https://i.pinimg.com/1200x/67/d9/e6/67d9e67b5e9fb1a0e5982bdf0cf254ba.jpg',category:'shoes', stock: 35, sales: 40},
+  {id:72,name:'Dress Shoes',price:1400,image:'https://i.pinimg.com/736x/e5/44/e4/e544e4793fde1eb1b357898311569aff.jpg',category:'shoes', stock: 10, sales: 8},
+  
+  // Electronics (12 items)
+  {id:73,name:'Smartphone',price:15000,image:'https://i.pinimg.com/736x/26/be/56/26be56634ad9773c9d8f6315cac2cba7.jpg',category:'electronics', stock: 8, sales: 5},
+  {id:74,name:'Headphones',price:1200,image:'https://i.pinimg.com/736x/97/bf/e4/97bfe4d56621b6de041588b0dfb83555.jpg',category:'electronics', stock: 25, sales: 30},
+  {id:75,name:'Smart Watch',price:3500,image:'https://i.pinimg.com/736x/3a/b1/94/3ab1940b2cba621442abe28e812065cd.jpg',category:'electronics', stock: 12, sales: 15},
+  {id:76,name:'Bluetooth Speaker',price:1500,image:'https://i.pinimg.com/736x/eb/91/6a/eb916a85407180161df9663a6241c75d.jpg',category:'electronics', stock: 18, sales: 20},
+  {id:77,name:'Tablet',price:8000,image:'https://i.pinimg.com/1200x/b2/f8/c1/b2f8c1b8d661642bf91074f5e5932b63.jpg',category:'electronics', stock: 6, sales: 4},
+  {id:78,name:'Laptop',price:25000,image:'https://i.pinimg.com/1200x/4f/a7/9e/4fa79e8c4ced76294ff6d2356e177c31.jpg',category:'electronics', stock: 4, sales: 3},
+  {id:79,name:'Camera',price:12000,image:'https://i.pinimg.com/1200x/13/f4/47/13f447b12d02019d1c5feeeb6165fe80.jpg',category:'electronics', stock: 7, sales: 5},
+  {id:80,name:'Gaming Console',price:15000,image:'https://i.pinimg.com/736x/e1/62/8c/e1628ccdeffc384a270bd8b29d137484.jpg',category:'electronics', stock: 5, sales: 3},
+  {id:81,name:'Power Bank',price:800,image:'https://i.pinimg.com/1200x/a9/31/a6/a931a685821b6fd71561e1560efd1f8a.jpg',category:'electronics', stock: 30, sales: 35},
+  {id:82,name:'Wireless Earbuds',price:1800,image:'https://i.pinimg.com/736x/6f/09/ad/6f09ad7bc17beab600a89e3112455b14.jpg',category:'electronics', stock: 20, sales: 25},
+  {id:83,name:'Smart Home Device',price:2500,image:'https://i.pinimg.com/736x/c0/09/60/c00960410944468843b236159575cb86.jpg',category:'electronics', stock: 15, sales: 12},
+  {id:84,name:'Fitness Tracker',price:2000,image:'https://i.pinimg.com/1200x/32/4c/9f/324c9f682487be5ace4ccba74d624b07.jpg',category:'electronics', stock: 18, sales: 20},
+  
+  // Home & Living (12 items)
+  {id:85,name:'Bedding Set',price:1800,image:'https://i.pinimg.com/736x/64/d6/91/64d691092f22ff100169ac07cb30990b.jpg',category:'home', stock: 15, sales: 18},
+  {id:86,name:'Kitchen Utensils',price:800,image:'https://i.pinimg.com/736x/45/f5/12/45f5126563997b322277df41fc16eaad.jpg',category:'home', stock: 30, sales: 35},
+  {id:87,name:'Home Decor',price:600,image:'https://i.pinimg.com/736x/ce/cf/12/cecf129fe17efa4c4018b092592d4b5d.jpg',category:'home', stock: 25, sales: 30},
+  {id:88,name:'Cookware Set',price:2500,image:'https://i.pinimg.com/1200x/64/d9/33/64d93303cac66a61b7b1ffeee8fd81ce.jpg',category:'home', stock: 10, sales: 8},
+  {id:89,name:'Bath Towels',price:400,image:'https://i.pinimg.com/1200x/a5/ae/94/a5ae945d3cf1436c6eb7590020affefb.jpg',category:'home', stock: 35, sales: 40},
+  {id:90,name:'Wall Art',price:700,image:'https://i.pinimg.com/736x/1e/d0/99/1ed099d59a76221c4afa3111142bd2f9.jpg',category:'home', stock: 20, sales: 18},
+  {id:91,name:'Storage Boxes',price:300,image:'https://i.pinimg.com/1200x/e2/67/15/e267154da764ca292d1fb058c4c2ad11.jpg',category:'home', stock: 40, sales: 45},
+  {id:92,name:'Lighting Fixture',price:1200,image:'https://i.pinimg.com/736x/f9/8b/d0/f98bd04b298c0762101174acfd928a86.jpg',category:'home', stock: 15, sales: 12},
+  {id:93,name:'Rug',price:1500,image:'https://i.pinimg.com/736x/04/cb/ed/04cbed1e52a0a7927dc4f6923d51627f.jpg',category:'home', stock: 12, sales: 10},
+  {id:94,name:'Curtains',price:900,image:'https://i.pinimg.com/736x/f6/fa/a0/f6faa06a11792a10d4bb3bdca85e436a.jpg',category:'home', stock: 18, sales: 15},
+  {id:95,name:'Plant Pots',price:350,image:'https://i.pinimg.com/736x/22/7b/d3/227bd3725bd69da935d683b189328336.jpg',category:'home', stock: 30, sales: 35},
+  {id:96,name:'Throw Pillows',price:250,image:'https://i.pinimg.com/1200x/90/0f/a7/900fa79cd0b57e6e594870cd860f163e.jpg',category:'home', stock: 40, sales: 45}
+];
+
+// Category Banners - I'll add actual images for each category
+const categoryBanners = {
+  'all': 'https://i.pinimg.com/1200x/89/7d/df/897ddfa0615c917d5f35473fb8ff6767.jpg',
+  'men': 'https://i.pinimg.com/1200x/1e/1c/3e/1e1c3ebdccc66d783108d9f77b920a93.jpg',
+  'women': 'https://i.pinimg.com/1200x/24/aa/6b/24aa6b62154addce953f78612b466d37.jpg',
+  'kids': 'https://i.pinimg.com/1200x/d6/e0/54/d6e05424ff230e7c0f4d053d9d69bbb5.jpg',
+  'makeup': 'https://i.pinimg.com/736x/c8/ae/d6/c8aed682deadcd21f174963f8713f42b.jpg',
+  'bags': 'https://i.pinimg.com/1200x/a1/ab/5d/a1ab5d31181997087de315f80708178b.jpg',
+  'shoes': 'https://i.pinimg.com/1200x/4d/d5/18/4dd518e71ee140902c824cfab614fc44.jpg',
+  'electronics': 'https://i.pinimg.com/1200x/bb/c4/80/bbc480c2e2114bc1dcee217ca4cf6a81.jpg',
+  'home': 'https://i.pinimg.com/1200x/37/9b/cb/379bcbaf32ae749c86b3328786be0b9f.jpg'
+};
+
+// Shipping fees for different delivery services - UPDATED WITH NEW SERVICES
+const shippingFees = {
+  'J&T Express': 80,
+  'JRS Express': 85,
+  'LBC Express': 90,
+  'Ninja Van': 75,
+  'Lalamove': 70,
+  'Flash Express': 65,
+  'Pickup / Store': 0
+};
+
+let orders=[], cart=[], currentUser=null;
+let currentPaymentData = {};
+let currentCategory = 'all'; // Default category
+let currentAdminCategory = 'all'; // Default admin category
+let favorites = []; // User's favorite products
+let currentOverviewPeriod = 'today'; // Default overview period
+
+// Default colors
+const defaultColors = {
+  primary: '#e91e63',
+  secondary: '#fce4ec',
+  accent: '#c2185b',
+  lightPink: '#f8bbd9',
+  textDark: '#880e4f'
+};
+
+// Load saved colors from localStorage
+function loadSavedColors() {
+  const savedColors = JSON.parse(localStorage.getItem('lovelyLittleThingsColors'));
+  if (savedColors) {
+    applyColors(savedColors);
+    updateColorPickers(savedColors);
+  }
+}
+
+// Apply colors to CSS variables
+function applyColors(colors) {
+  const root = document.documentElement;
+  root.style.setProperty('--primary', colors.primary);
+  root.style.setProperty('--secondary', colors.secondary);
+  root.style.setProperty('--accent', colors.accent);
+  root.style.setProperty('--light-pink', colors.lightPink);
+  root.style.setProperty('--text-dark', colors.textDark);
+}
+
+// Update color picker values
+function updateColorPickers(colors) {
+  document.getElementById('primaryColor').value = colors.primary;
+  document.getElementById('secondaryColor').value = colors.secondary;
+  document.getElementById('accentColor').value = colors.accent;
+  document.getElementById('lightPinkColor').value = colors.lightPink;
+  document.getElementById('textDarkColor').value = colors.textDark;
+}
+
+// Save custom colors
+function saveCustomColors() {
+  const colors = {
+    primary: document.getElementById('primaryColor').value,
+    secondary: document.getElementById('secondaryColor').value,
+    accent: document.getElementById('accentColor').value,
+    lightPink: document.getElementById('lightPinkColor').value,
+    textDark: document.getElementById('textDarkColor').value
+  };
+  
+  applyColors(colors);
+  localStorage.setItem('lovelyLittleThingsColors', JSON.stringify(colors));
+  showToast('Colors saved successfully!');
+}
+
+// Reset colors to default
+function resetColors() {
+  applyColors(defaultColors);
+  updateColorPickers(defaultColors);
+  localStorage.setItem('lovelyLittleThingsColors', JSON.stringify(defaultColors));
+  showToast('Colors reset to default!');
+}
+
+// Toast function
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.className='show';
+  setTimeout(()=>{t.className='';},3000);
+}
+
+// Toggle password info based on role selection
+function togglePasswordInfo() {
+  const role = document.getElementById('role').value;
+  const customerInfo = document.getElementById('customerPasswordInfo');
+  
+  if (role === 'customer') {
+    customerInfo.style.display = 'block';
+  } else {
+    customerInfo.style.display = 'none';
+  }
+}
+
+// Show/hide register form
+function showRegister() {
+  document.getElementById('registerDiv').style.display = 'flex';
+  document.querySelector('.register-link').style.display = 'none';
+}
+
+function showLogin() {
+  document.getElementById('registerDiv').style.display = 'none';
+  document.querySelector('.register-link').style.display = 'block';
+}
+
+// Show forgot password modal
+function showForgotModal() {
+  document.getElementById('forgotModal').style.display = 'flex';
+}
+
+// Close forgot password modal
+function closeForgotModal() {
+  document.getElementById('forgotModal').style.display = 'none';
+}
+
+// Reset password function
+function resetPassword() {
+  const username = document.getElementById('forgotUsername').value;
+  
+  if (!username) {
+    showToast('Please enter your username!');
+    return;
+  }
+  
+  const user = users.find(u => u.username === username);
+  
+  if (user) {
+    // In a real app, you would send a reset link to the user's email
+    showToast('Password reset instructions have been sent to your email!');
+    closeForgotModal();
+  } else {
+    showToast('Username not found!');
+  }
+}
+
+// Password validation function - AT LEAST 8 CHARS WITH LETTERS
+function validatePassword(password) {
+  // Check if at least 8 characters
+  if (password.length < 8) {
+    return false;
+  }
+  
+  // Check if contains at least one letter (a-z or A-Z)
+  if (!/[a-zA-Z]/.test(password)) {
+    return false;
+  }
+  
+  return true;
+}
+
+// Email validation function
+function validateEmail(email) {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email);
+}
+
+// Phone validation function
+function validatePhone(phone) {
+  // Simple phone validation for Philippines (starts with 09 and 11 digits)
+  const re = /^09\d{9}$/;
+  return re.test(phone);
+}
+
+// Register function with password validation - CUSTOMER ONLY
+function register() {
+  const username = document.getElementById('regUsername').value;
+  const email = document.getElementById('regEmail').value;
+  const phone = document.getElementById('regPhone').value;
+  const address = document.getElementById('regAddress').value;
+  const password = document.getElementById('regPassword').value;
+  const confirmPassword = document.getElementById('regConfirmPassword').value;
+  
+  if (!username || !email || !phone || !address || !password || !confirmPassword) {
+    showToast('Please fill in all fields!');
+    return;
+  }
+  
+  // Validate email format
+  if (!validateEmail(email)) {
+    showToast('Please enter a valid email address!');
+    return;
+  }
+  
+  // Validate phone format
+  if (!validatePhone(phone)) {
+    showToast('Please enter a valid Philippine phone number (09XXXXXXXXX)!');
+    return;
+  }
+  
+  // Check password requirements
+  if (!validatePassword(password)) {
+    showToast('Password must be at least 8 characters and contain letters!');
+    return;
+  }
+  
+  if (password !== confirmPassword) {
+    showToast('Passwords do not match!');
+    return;
+  }
+  
+  // Check if username already exists
+  const existingUser = users.find(u => u.username === username);
+  if (existingUser) {
+    showToast('Username already exists!');
+    return;
+  }
+  
+  // Add new user - ALWAYS AS CUSTOMER
+  users.push({username, email, phone, address, password, role: 'customer'});
+  showToast('Registration successful! Please login as customer.');
+  showLogin();
+  
+  // Clear registration form
+  document.getElementById('regUsername').value = '';
+  document.getElementById('regEmail').value = '';
+  document.getElementById('regPhone').value = '';
+  document.getElementById('regAddress').value = '';
+  document.getElementById('regPassword').value = '';
+  document.getElementById('regConfirmPassword').value = '';
+}
+
+// Login function - ANY USERNAME & PASSWORD WITH 8+ CHARS AND LETTERS WORKS FOR STAFF/ADMIN
+function login(){
+  const username=document.getElementById('username').value;
+  const password=document.getElementById('password').value;
+  const role=document.getElementById('role').value;
+  
+  if (!username || !password) {
+    showToast('Please fill in all fields!');
+    return;
+  }
+  
+  // Check password requirements for ALL users
+  if (!validatePassword(password)) {
+    showToast('Password must be at least 8 characters and contain letters!');
+    return;
+  }
+  
+  // For customers: check exact username and password match
+  if (role === 'customer') {
+    const user=users.find(u=>u.username===username && u.password===password && u.role===role);
+    if(user){
+      currentUser=user;
+      document.getElementById('loginDiv').style.display='none';
+      document.getElementById('dashboard').style.display='block';
+      showToast('Login Successful!');
+      setupDashboard();
+    } else {
+      showToast('Invalid credentials!');
+    }
+  } 
+  // For staff and admin: ANY USERNAME & ANY PASSWORD WITH 8+ CHARS AND LETTERS WORKS
+  else {
+    // Check if this staff/admin user already exists
+    let user = users.find(u=>u.username===username && u.role===role);
+    
+    // If user doesn't exist, create them dynamically
+    if (!user) {
+      user = {username, password, role, email: `${username}@example.com`, phone: '09123456789', address: 'N/A'};
+      users.push(user);
+    }
+    
+    currentUser=user;
+    document.getElementById('loginDiv').style.display='none';
+    document.getElementById('dashboard').style.display='block';
+    showToast(`Login Successful! Welcome ${role} - ${username}`);
+    setupDashboard();
+  }
+}
+
+function logout(){
+  currentUser=null;
+  document.getElementById('dashboard').style.display='none';
+  document.getElementById('loginDiv').style.display='flex';
+  cart=[]; renderCart();
+  favorites = []; // Clear favorites on logout
+}
+
+// Dashboard Setup
+function setupDashboard(){
+  document.getElementById('customerSection').style.display='none';
+  document.getElementById('staffSection').style.display='none';
+  document.getElementById('adminSection').style.display='none';
+  if(currentUser.role==='customer'){
+    document.getElementById('customerSection').style.display='block';
+    renderMenu();
+    renderCart();
+    renderCustomerOrders();
+    populateAddressDropdown();
+    renderFavorites();
+  }
+  if(currentUser.role==='staff'){
+    document.getElementById('staffSection').style.display='block';
+    renderOrders();
+  }
+  if(currentUser.role==='admin'){
+    document.getElementById('adminSection').style.display='block';
+    renderAdminOverview();
+    renderInventory();
+    renderUsers();
+    renderAdminMenu();
+    renderAdminOrders();
+  }
+}
+
+// Admin Dashboard Overview
+function renderAdminOverview() {
+  const overviewContainer = document.getElementById('adminOverview');
+  const salesChart = document.getElementById('salesChart');
+  const topProducts = document.getElementById('topProducts');
+  
+  // Calculate metrics based on current period
+  const metrics = calculateMetrics(currentOverviewPeriod);
+  
+  // Render overview cards
+  overviewContainer.innerHTML = `
+    <div class="overview-card">
+      <h3>Total Revenue</h3>
+      <div class="overview-value">₱${metrics.totalRevenue.toLocaleString()}</div>
+      <div class="overview-change ${metrics.revenueChange >= 0 ? 'positive' : 'negative'}">
+        ${metrics.revenueChange >= 0 ? '+' : ''}${metrics.revenueChange}%
+      </div>
+    </div>
+    <div class="overview-card">
+      <h3>Total Orders</h3>
+      <div class="overview-value">${metrics.totalOrders}</div>
+      <div class="overview-change ${metrics.ordersChange >= 0 ? 'positive' : 'negative'}">
+        ${metrics.ordersChange >= 0 ? '+' : ''}${metrics.ordersChange}%
+      </div>
+    </div>
+    <div class="overview-card">
+      <h3>Products Sold</h3>
+      <div class="overview-value">${metrics.productsSold}</div>
+      <div class="overview-change ${metrics.productsChange >= 0 ? 'positive' : 'negative'}">
+        ${metrics.productsChange >= 0 ? '+' : ''}${metrics.productsChange}%
+      </div>
+    </div>
+    <div class="overview-card">
+      <h3>Average Order Value</h3>
+      <div class="overview-value">₱${metrics.averageOrderValue.toLocaleString()}</div>
+      <div class="overview-change ${metrics.aovChange >= 0 ? 'positive' : 'negative'}">
+        ${metrics.aovChange >= 0 ? '+' : ''}${metrics.aovChange}%
+      </div>
+    </div>
+  `;
+  
+  // Render sales chart
+  renderSalesChart(metrics.salesData);
+  
+  // Render top products
+  renderTopProducts(metrics.topProducts);
+}
+
+// Calculate metrics for the overview
+function calculateMetrics(period) {
+  // This would typically come from a backend in a real application
+  // For demo purposes, we'll generate some sample data
+  
+  let totalRevenue, totalOrders, productsSold, averageOrderValue;
+  let revenueChange, ordersChange, productsChange, aovChange;
+  let salesData = [];
+  let topProducts = [];
+  
+  // Generate sample data based on period
+  switch(period) {
+    case 'today':
+      totalRevenue = 12500;
+      totalOrders = 18;
+      productsSold = 42;
+      averageOrderValue = 694;
+      revenueChange = 12;
+      ordersChange = 8;
+      productsChange = 15;
+      aovChange = 4;
+      
+      // Generate sales data for today (by hour)
+      for (let i = 8; i <= 20; i++) {
+        salesData.push({
+          label: `${i}:00`,
+          value: Math.floor(Math.random() * 3000) + 500
+        });
+      }
+      break;
+      
+    case 'week':
+      totalRevenue = 78500;
+      totalOrders = 112;
+      productsSold = 285;
+      averageOrderValue = 701;
+      revenueChange = 18;
+      ordersChange = 15;
+      productsChange = 22;
+      aovChange = 3;
+      
+      // Generate sales data for the week (by day)
+      const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+      days.forEach(day => {
+        salesData.push({
+          label: day,
+          value: Math.floor(Math.random() * 15000) + 5000
+        });
+      });
+      break;
+      
+    case 'month':
+      totalRevenue = 325000;
+      totalOrders = 485;
+      productsSold = 1250;
+      averageOrderValue = 670;
+      revenueChange = 25;
+      ordersChange = 22;
+      productsChange = 28;
+      aovChange = 2;
+      
+      // Generate sales data for the month (by week)
+      for (let i = 1; i <= 4; i++) {
+        salesData.push({
+          label: `Week ${i}`,
+          value: Math.floor(Math.random() * 100000) + 50000
+        });
+      }
+      break;
+  }
+  
+  // Get top products
+  topProducts = [...menuItems]
+    .sort((a, b) => b.sales - a.sales)
+    .slice(0, 4);
+  
+  return {
+    totalRevenue,
+    totalOrders,
+    productsSold,
+    averageOrderValue,
+    revenueChange,
+    ordersChange,
+    productsChange,
+    aovChange,
+    salesData,
+    topProducts
+  };
+}
+
+// Change overview period
+function changeOverviewPeriod(period) {
+  currentOverviewPeriod = period;
+  
+  // Update active period button
+  document.querySelectorAll('.period-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  document.querySelector(`.period-btn:nth-child(${period === 'today' ? 1 : period === 'week' ? 2 : 3})`).classList.add('active');
+  
+  // Re-render overview
+  renderAdminOverview();
+}
+
+// Render sales chart
+function renderSalesChart(salesData) {
+  const chartContainer = document.getElementById('salesChart');
+  const maxValue = Math.max(...salesData.map(item => item.value));
+  
+  let chartHTML = '<div class="chart-bar">';
+  
+  salesData.forEach(item => {
+    const height = (item.value / maxValue) * 100;
+    chartHTML += `
+      <div class="bar" style="height: ${height}%">
+        <div class="bar-value">₱${item.value.toLocaleString()}</div>
+        <div class="bar-label">${item.label}</div>
+      </div>
+    `;
+  });
+  
+  chartHTML += '</div>';
+  
+  chartContainer.innerHTML = chartHTML;
+}
+
+// Render top products
+function renderTopProducts(topProducts) {
+  const container = document.getElementById('topProducts');
+  
+  let productsHTML = '';
+  
+  topProducts.forEach(product => {
+    productsHTML += `
+      <div class="top-product-card">
+        <img src="${product.image}" alt="${product.name}">
+        <h4>${product.name}</h4>
+        <p>₱${product.price}</p>
+        <div class="sales-count">${product.sales} sold</div>
+      </div>
+    `;
+  });
+  
+  container.innerHTML = productsHTML;
+}
+
+// Render inventory table
+function renderInventory() {
+  const tbody = document.getElementById('inventoryTable');
+  tbody.innerHTML = '';
+  
+  menuItems.forEach(item => {
+    const tr = document.createElement('tr');
+    
+    // Determine stock status
+    let stockClass = '';
+    let stockStatus = '';
+    
+    if (item.stock <= 5) {
+      stockClass = 'low-stock';
+      stockStatus = 'Low Stock';
+    } else if (item.stock <= 15) {
+      stockClass = 'medium-stock';
+      stockStatus = 'Medium Stock';
+    } else {
+      stockClass = 'high-stock';
+      stockStatus = 'In Stock';
+    }
+    
+    tr.innerHTML = `
+      <td>${item.id}</td>
+      <td>${item.name}</td>
+      <td>${item.category.charAt(0).toUpperCase() + item.category.slice(1)}</td>
+      <td>₱${item.price}</td>
+      <td class="${stockClass}">${item.stock}</td>
+      <td>${stockStatus}</td>
+      <td>${item.sales}</td>
+      <td>
+        <button onclick="editStock(${item.id})">Edit Stock</button>
+      </td>
+    `;
+    
+    tbody.appendChild(tr);
+  });
+}
+
+// Edit stock function
+function editStock(id) {
+  const item = menuItems.find(i => i.id === id);
+  if (item) {
+    const newStock = prompt(`Enter new stock quantity for ${item.name}:`, item.stock);
+    if (newStock !== null && !isNaN(newStock) && newStock >= 0) {
+      item.stock = parseInt(newStock);
+      renderInventory();
+      showToast(`Stock updated for ${item.name}`);
+    }
+  }
+}
+
+// Filter products by category
+function filterProducts(category) {
+  currentCategory = category;
+  
+  // Update active tab
+  document.querySelectorAll('.category-tab').forEach(tab => {
+    tab.classList.remove('active');
+  });
+  document.querySelector(`.category-tab.${category}`).classList.add('active');
+  
+  // Update banner
+  document.getElementById('categoryBanner').src = categoryBanners[category];
+  
+  // For "All Products", show a special banner
+  if (category === 'all') {
+    document.getElementById('categoryBannerContainer').innerHTML = `
+      <div class="all-products-banner">
+        <h2>All Products</h2>
+        <p>Browse our complete collection of fashion, beauty, and lifestyle products</p>
+      </div>
+    `;
+  } else {
+    document.getElementById('categoryBannerContainer').innerHTML = `
+      <img id="categoryBanner" class="category-banner" src="${categoryBanners[category]}" alt="${category} Banner">
+    `;
+  }
+  
+  renderMenu();
+}
+
+// Filter admin products by category
+function filterAdminProducts(category) {
+  currentAdminCategory = category;
+  
+  // Update active tab
+  document.querySelectorAll('.admin-category-tab').forEach(tab => {
+    tab.classList.remove('active');
+  });
+  document.querySelector(`.admin-category-tab.${category}`).classList.add('active');
+  
+  renderAdminMenu();
+}
+
+// Populate address dropdown for customer
+function populateAddressDropdown() {
+  const addressDropdown = document.getElementById('deliveryAddress');
+  addressDropdown.innerHTML = '<option value="">Select Delivery Address</option>';
+  
+  // Add the user's registered address as the first option
+  if (currentUser && currentUser.address) {
+    const option = document.createElement('option');
+    option.value = currentUser.address;
+    option.textContent = currentUser.address;
+    addressDropdown.appendChild(option);
+  }
+  
+  // Add all available addresses as options
+  const addresses = [
+    'Anilao II, Mabini Batangas', 'Anilao I, Mabini Batangas', 'Bagalangit, Mabini Batangas', 'Bulacan, Mabini Batangas', 
+    'Calamias, Mabini Batangas', 'Estrella, Mabini Batangas', 'Gasang, Mabini Batangas', 'Laurel, Mabini Batangas', 
+    'Ligaya, Mabini Batangas', 'Mainaga, Mabini Batangas', 'Mainit, Mabini Batangas', 'Majuben, Mabini Batangas', 
+    'Malimatoc I, Mabini Batangas', 'Malimatoc II, Mabini Batangas', 'Nag-Iba, Mabini Batangas', 'Pilahan, Mabini Batangas', 
+    'Poblacion, Mabini Batangas', 'Pulang Lupa, Mabini Batangas', 'Pulong Anahao, Mabini Batangas', 
+    'Pulong Balibaguhan, Mabini Batangas', 'Pulong Niogan, Mabini Batangas', 'Saguing, Mabini Batangas', 
+    'Sampaguita, Mabini Batangas', 'San Francisco, Mabini Batangas', 'San Jose, Mabini Batangas', 'San Juan, Mabini Batangas', 
+    'San Teodoro, Mabini Batangas', 'Santa Ana, Mabini Batangas', 'Santa Mesa, Mabini Batangas', 'Santo Niño, Mabini Batangas', 
+    'Sili, Mabini Batangas', 'Solo, Mabini Batangas', 'Talaga Proper, Mabini Batangas', 'Talaga East, Mabini Batangas'
+  ];
+  
+  addresses.forEach(address => {
+    // Skip if this is the user's registered address (already added)
+    if (currentUser && currentUser.address === address) return;
+    
+    const option = document.createElement('option');
+    option.value = address;
+    option.textContent = address;
+    addressDropdown.appendChild(option);
+  });
+}
+
+// Update shipping fee based on selected delivery service
+function updateShippingFee() {
+  const deliveryService = document.getElementById('deliveryService').value;
+  const shippingFeeDisplay = document.getElementById('shippingFeeDisplay');
+  const shippingFeeElement = document.getElementById('shippingFee');
+  const totalWithShippingElement = document.getElementById('totalWithShipping');
+  
+  if (deliveryService && shippingFees[deliveryService] !== undefined) {
+    const shippingFee = shippingFees[deliveryService];
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+    const total = subtotal + shippingFee;
+    
+    shippingFeeElement.textContent = shippingFee;
+    totalWithShippingElement.textContent = total;
+    
+    // Show shipping fee display only if there's a shipping fee
+    if (shippingFee > 0) {
+      shippingFeeDisplay.style.display = 'block';
+    } else {
+      shippingFeeDisplay.style.display = 'none';
+    }
+  } else {
+    shippingFeeDisplay.style.display = 'none';
+    totalWithShippingElement.textContent = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+  }
+}
+
+// Toggle reference number input based on payment method
+function toggleReferenceInput() {
+  const paymentMethod = document.getElementById('paymentMethod').value;
+  const referenceInput = document.getElementById('referenceNumber');
+  
+  if (paymentMethod === 'Cash on Delivery (COD)') {
+    referenceInput.style.display = 'none';
+  } else {
+    referenceInput.style.display = 'block';
+    referenceInput.placeholder = paymentMethod === 'GCash' ? 'GCash Reference Number' : 'Credit Card Transaction ID';
+  }
+}
+
+// Show payment modal
+function showPaymentModal() {
+  const deliveryAddress = document.getElementById('deliveryAddress').value;
+  const paymentMethod = document.getElementById('paymentMethod').value;
+  const deliveryService = document.getElementById('deliveryService').value;
+  const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+  const shippingFee = deliveryService ? shippingFees[deliveryService] : 0;
+  const total = subtotal + shippingFee;
+  
+  const modal = document.getElementById('paymentModal');
+  const modalTitle = document.getElementById('paymentModalTitle');
+  const modalContent = document.getElementById('paymentModalContent');
+  
+  modalTitle.textContent = 'Checkout Summary';
+  
+  if (!deliveryAddress) {
+    showToast('Please select a delivery address!');
+    return;
+  }
+  
+  if (!deliveryService) {
+    showToast('Please select a delivery service!');
+    return;
+  }
+  
+  modalContent.innerHTML = `
+    <p><strong>Delivery Address:</strong> ${deliveryAddress}</p>
+    <p><strong>Delivery Service:</strong> ${deliveryService}</p>
+    <p><strong>Subtotal:</strong> ₱${subtotal}</p>
+    ${shippingFee > 0 ? `<p><strong>Shipping Fee:</strong> ₱${shippingFee}</p>` : ''}
+    <p><strong>Total Amount:</strong> ₱${total}</p>
+    <p><strong>Payment Method:</strong> ${paymentMethod}</p>
+    ${paymentMethod !== 'Cash on Delivery (COD)' ? `
+      <p>Please enter your ${paymentMethod === 'GCash' ? 'GCash Reference Number' : 'Credit Card Transaction ID'}:</p>
+      <input type="text" id="modalReferenceNumber" placeholder="${paymentMethod === 'GCash' ? 'GCash Reference Number' : 'Credit Card Transaction ID'}" required>
+    ` : `
+      <p>Please prepare cash payment ${deliveryService === 'Pickup / Store' ? 'upon pickup' : 'upon delivery'}.</p>
+    `}
+    <p style="font-size: 12px; color: #c48b9f; margin-top: 5px;">
+      ${deliveryService === 'Pickup / Store' ? 
+        'Your order will be ready for pickup at our store.' : 
+        `Order will be delivered via ${deliveryService} to ${deliveryAddress}`}
+    </p>
+  `;
+  
+  modal.style.display = 'flex';
+}
+
+// Close payment modal
+function closePaymentModal() {
+  document.getElementById('paymentModal').style.display = 'none';
+}
+
+// Confirm payment
+function confirmPayment() {
+  const deliveryAddress = document.getElementById('deliveryAddress').value;
+  const paymentMethod = document.getElementById('paymentMethod').value;
+  const deliveryService = document.getElementById('deliveryService').value;
+  const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+  const shippingFee = shippingFees[deliveryService];
+  const total = subtotal + shippingFee;
+  let referenceNumber = '';
+  
+  if (paymentMethod !== 'Cash on Delivery (COD)') {
+    const modalReferenceInput = document.getElementById('modalReferenceNumber');
+    if (!modalReferenceInput.value) {
+      showToast(`Please enter ${paymentMethod === 'GCash' ? 'GCash reference number' : 'credit card transaction ID'}`);
+      return;
+    }
+    referenceNumber = modalReferenceInput.value;
+  }
+  
+  // Process payment
+  const order = {
+    id: Date.now(),
+    customer: currentUser.username,
+    email: currentUser.email,
+    address: deliveryAddress,
+    items: [...cart],
+    subtotal: subtotal,
+    deliveryService: deliveryService,
+    shippingFee: shippingFee,
+    total: total,
+    status: 'Pending',
+    payment: paymentMethod,
+    referenceNumber: referenceNumber,
+    orderDate: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+  };
+  
+  orders.push(order);
+  cart = []; 
+  renderCart(); 
+  renderCustomerOrders();
+  closePaymentModal();
+  showToast('Order Successful! Your order has been placed.');
+}
+
+// Pay function - shows payment modal
+function pay(){
+  if(cart.length === 0){ 
+    showToast('Cart empty!'); 
+    return; 
+  }
+  
+  const deliveryAddress = document.getElementById('deliveryAddress').value;
+  if (!deliveryAddress) {
+    showToast('Please select a delivery address!');
+    return;
+  }
+  
+  const deliveryService = document.getElementById('deliveryService').value;
+  if (!deliveryService) {
+    showToast('Please select a delivery service!');
+    return;
+  }
+  
+  showPaymentModal();
+}
+
+// Customer Functions
+function renderMenu(){
+  const grid=document.getElementById('menuGrid');
+  grid.innerHTML='';
+  
+  // Filter products by current category
+  let filteredItems;
+  if (currentCategory === 'all') {
+    filteredItems = menuItems;
+  } else {
+    filteredItems = menuItems.filter(item => item.category === currentCategory);
+  }
+  
+  filteredItems.forEach(item=>{
+    const div=document.createElement('div');
+    div.className='menu-item';
+    const isFavorite = favorites.includes(item.id);
+    div.innerHTML=`
+      <button class="favorite-btn ${isFavorite ? 'active' : ''}" onclick="toggleFavorite(${item.id})">${isFavorite ? '❤️' : '🤍'}</button>
+      <img src="${item.image}" alt="${item.name}">
+      <h4>${item.name}</h4>
+      <p>₱${item.price}</p>
+      <button onclick="addToCart(${item.id})">Add</button>
+    `;
+    grid.appendChild(div);
+  });
+}
+
+// Toggle favorite status
+function toggleFavorite(id) {
+  const index = favorites.indexOf(id);
+  if (index > -1) {
+    // Remove from favorites
+    favorites.splice(index, 1);
+    showToast('Removed from favorites!');
+  } else {
+    // Add to favorites
+    favorites.push(id);
+    showToast('Added to favorites!');
+  }
+  
+  // Update UI
+  renderMenu();
+  renderFavorites();
+}
+
+// Render favorite products
+function renderFavorites() {
+  const favoriteSection = document.getElementById('favoriteSection');
+  const favoriteGrid = document.getElementById('favoriteGrid');
+  
+  if (favorites.length === 0) {
+    favoriteSection.style.display = 'none';
+    return;
+  }
+  
+  favoriteSection.style.display = 'block';
+  favoriteGrid.innerHTML = '';
+  
+  const favoriteItems = menuItems.filter(item => favorites.includes(item.id));
+  
+  if (favoriteItems.length === 0) {
+    favoriteGrid.innerHTML = '<div class="favorite-empty">No favorite products yet.</div>';
+    return;
+  }
+  
+  favoriteItems.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'menu-item';
+    div.innerHTML = `
+      <button class="favorite-btn active" onclick="toggleFavorite(${item.id})">❤️</button>
+      <img src="${item.image}" alt="${item.name}">
+      <h4>${item.name}</h4>
+      <p>₱${item.price}</p>
+      <button onclick="addToCart(${item.id})">Add</button>
+    `;
+    favoriteGrid.appendChild(div);
+  });
+}
+
+function addToCart(id){
+  const item=menuItems.find(i=>i.id===id);
+  const cartItem=cart.find(c=>c.id===id);
+  if(cartItem) cartItem.qty+=1; else cart.push({id:item.id,name:item.name,price:item.price,qty:1});
+  renderCart();
+  showToast('Added to cart!');
+}
+
+function renderCart(){
+  const wrapper=document.getElementById('cartItems');
+  const count=document.getElementById('cartCount');
+  const totalElem=document.getElementById('cartTotal');
+  const totalWithShippingElem = document.getElementById('totalWithShipping');
+  wrapper.innerHTML='';
+  let subtotal=0,qty=0;
+  cart.forEach(c=>{
+    subtotal+=c.price*c.qty;
+    qty+=c.qty;
+    const div=document.createElement('div');
+    div.className='cart-item';
+    div.innerHTML=`${c.name} x ${c.qty} <button onclick="removeCart(${c.id})">X</button>`;
+    wrapper.appendChild(div);
+  });
+  count.textContent=qty;
+  totalElem.textContent=subtotal;
+  totalWithShippingElem.textContent=subtotal;
+  
+  // Reset delivery service selection
+  document.getElementById('deliveryService').value = '';
+  document.getElementById('shippingFeeDisplay').style.display = 'none';
+}
+
+function removeCart(id){cart=cart.filter(c=>c.id!==id); renderCart();}
+
+// Enhanced customer orders with beautiful tracking
+function renderCustomerOrders(){
+  const div=document.getElementById('customerOrders');
+  div.innerHTML='<h3>Your Orders</h3>';
+  const userOrders = orders.filter(o=>o.customer===currentUser.username);
+  
+  if (userOrders.length === 0) {
+    div.innerHTML += '<p>No orders yet.</p>';
+    return;
+  }
+  
+  userOrders.forEach(o=>{
+    const items=o.items.map(i=>`${i.name} x${i.qty}`).join(', ');
+    const statusClass = getStatusClass(o.status);
+    const deliveryClass = getDeliveryClass(o.deliveryService);
+    
+    const orderDiv=document.createElement('div');
+    orderDiv.className = 'order-status-container';
+    orderDiv.innerHTML = `
+      <div class="order-status-header">
+        <strong>Order#${o.id}</strong>
+        <span class="status-badge ${statusClass}">${o.status}</span>
+      </div>
+      <div class="order-status-timeline">
+        ${renderEnhancedTrackingSteps(o.status)}
+      </div>
+      <div class="order-status-details">
+        <p><strong>Order Date:</strong> ${o.orderDate}</p>
+        <p><strong>Items:</strong> ${items}</p>
+        <p><strong>Address:</strong> ${o.address}</p>
+        <p><strong>Subtotal:</strong> ₱${o.subtotal}</p>
+        ${o.shippingFee > 0 ? `<p><strong>Shipping Fee:</strong> ₱${o.shippingFee}</p>` : ''}
+        <p><strong>Total:</strong> ₱${o.total}</p>
+        <p><strong>Delivery Service:</strong> <span class="delivery-badge ${deliveryClass}">${o.deliveryService}</span></p>
+        <p><strong>Payment Method:</strong> ${o.payment}${o.referenceNumber ? ` | Ref: ${o.referenceNumber}` : ''}</p>
+      </div>
+    `;
+    div.appendChild(orderDiv);
+  });
+}
+
+// Render enhanced tracking steps based on order status
+function renderEnhancedTrackingSteps(status) {
+  const steps = [
+    {id: 'pending', label: 'Pending', icon: '⏳', description: 'Order received'},
+    {id: 'confirmed', label: 'Confirmed', icon: '✅', description: 'Order confirmed'},
+    {id: 'processing', label: 'Processing', icon: '🔄', description: 'Preparing your order'},
+    {id: 'shipped', label: 'Shipped', icon: '📦', description: 'Order shipped'},
+    {id: 'out-for-delivery', label: 'Out for Delivery', icon: '🚚', description: 'Out for delivery'}
+  ];
+  
+  let currentStepIndex = 0;
+  switch(status) {
+    case 'Pending': currentStepIndex = 0; break;
+    case 'Confirmed': currentStepIndex = 1; break;
+    case 'Processing': currentStepIndex = 2; break;
+    case 'Shipped': currentStepIndex = 3; break;
+    case 'Out for Delivery': currentStepIndex = 4; break;
+    default: currentStepIndex = 0;
+  }
+  
+  let stepsHTML = '';
+  steps.forEach((step, index) => {
+    let stepClass = '';
+    if (index < currentStepIndex) {
+      stepClass = 'status-step-completed';
+    } else if (index === currentStepIndex) {
+      stepClass = 'status-step-active';
+    }
+    
+    stepsHTML += `
+      <div class="order-status-step ${stepClass}">
+        <div class="status-step-icon">${step.icon}</div>
+        <div class="status-step-label">${step.label}</div>
+        <div class="status-step-date">${step.description}</div>
+      </div>
+    `;
+  });
+  
+  return stepsHTML;
+}
+
+// Get status CSS class
+function getStatusClass(status) {
+  const statusClasses = {
+    'Pending': 'status-pending',
+    'Confirmed': 'status-confirmed',
+    'Processing': 'status-processing',
+    'Shipped': 'status-shipped',
+    'Out for Delivery': 'status-out-for-delivery',
+    'Completed': 'status-completed',
+    'Cancelled': 'status-cancelled',
+    'Refund': 'status-refund'
+  };
+  return statusClasses[status] || 'status-pending';
+}
+
+// Get delivery service CSS class
+function getDeliveryClass(deliveryService) {
+  const deliveryClasses = {
+    'J&T Express': 'jt-express',
+    'JRS Express': 'jrs-express',
+    'LBC Express': 'lbc-express',
+    'Ninja Van': 'ninja-van',
+    'Lalamove': 'lalamove',
+    'Flash Express': 'flash-express',
+    'Pickup / Store': 'pickup-store'
+  };
+  return deliveryClasses[deliveryService] || 'jt-express';
+}
+
+// Staff Functions
+function renderOrders(){
+  const tbody=document.getElementById('ordersTable');
+  tbody.innerHTML='';
+  orders.forEach(o=>{
+    const tr=document.createElement('tr');
+    const items=o.items.map(i=>`${i.name} x${i.qty}`).join(', ');
+    const statusClass = getStatusClass(o.status);
+    const deliveryClass = getDeliveryClass(o.deliveryService);
+    
+    // Determine available next statuses based on current status
+    let nextStatusOptions = '';
+    switch(o.status) {
+      case 'Pending':
+        nextStatusOptions = `
+          <option value="Confirmed">Confirmed</option>
+          <option value="Cancelled">Cancelled</option>
+        `;
+        break;
+      case 'Confirmed':
+        nextStatusOptions = `
+          <option value="Processing">Processing</option>
+          <option value="Cancelled">Cancelled</option>
+        `;
+        break;
+      case 'Processing':
+        nextStatusOptions = `
+          <option value="Shipped">Shipped</option>
+          <option value="Cancelled">Cancelled</option>
+        `;
+        break;
+      case 'Shipped':
+        nextStatusOptions = `
+          <option value="Out for Delivery">Out for Delivery</option>
+          <option value="Cancelled">Cancelled</option>
+        `;
+        break;
+      case 'Out for Delivery':
+        nextStatusOptions = `
+          <option value="Completed">Completed</option>
+          <option value="Refund">Refund</option>
+        `;
+        break;
+      case 'Completed':
+        nextStatusOptions = `
+          <option value="Completed">Completed</option>
+        `;
+        break;
+      case 'Refund':
+        nextStatusOptions = `
+          <option value="Cancelled">Cancelled</option>
+        `;
+        break;
+      default:
+        nextStatusOptions = `<option value="${o.status}">${o.status}</option>`;
+    }
+    
+    tr.innerHTML=`
+      <td>${o.id}</td>
+      <td>${o.customer}</td>
+      <td>${o.email}</td>
+      <td>${o.address}</td>
+      <td>${items}</td>
+      <td>₱${o.subtotal}</td>
+      <td><span class="delivery-badge ${deliveryClass}">${o.deliveryService}</span></td>
+      <td>₱${o.shippingFee}</td>
+      <td>₱${o.total}</td>
+      <td><span class="status-badge ${statusClass}">${o.status}</span></td>
+      <td>${o.payment}</td>
+      <td>${o.referenceNumber || '-'}</td>
+      <td>
+        <select onchange="updateStatus(${o.id},this.value)" ${o.status === 'Completed' || o.status === 'Cancelled' ? 'disabled' : ''}>
+          <option value="${o.status}">${o.status}</option>
+          ${nextStatusOptions}
+        </select>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function updateStatus(id,status){
+  const o=orders.find(o=>o.id===id); 
+  if(o){
+    o.status=status; 
+    renderOrders(); 
+    renderCustomerOrders(); 
+    renderAdminOrders();
+    showToast(`Order #${id} status updated to ${status}`);
+  }
+}
+
+// Admin Functions with password validation FOR ALL USERS
+function addUser(){
+  const u=document.getElementById('newUsername').value;
+  const e=document.getElementById('newEmail').value;
+  const pn=document.getElementById('newPhone').value;
+  const a=document.getElementById('newAddress').value;
+  const p=document.getElementById('newPassword').value;
+  const r=document.getElementById('newRole').value;
+  
+  if(u && e && pn && a && p){ 
+    // Validate email format
+    if (!validateEmail(e)) {
+      showToast('Please enter a valid email address!');
+      return;
+    }
+    
+    // Validate phone format
+    if (!validatePhone(pn)) {
+      showToast('Please enter a valid Philippine phone number (09XXXXXXXXX)!');
+      return;
+    }
+    
+    // Check password requirements for ALL users
+    if (!validatePassword(p)) {
+      showToast('Password must be at least 8 characters and contain letters!');
+      return;
+    }
+    users.push({username:u, email:e, phone:pn, address:a, password:p, role:r}); 
+    renderUsers(); 
+    showToast('User Added!'); 
+    
+    // Clear the form after successful addition
+    document.getElementById('newUsername').value = '';
+    document.getElementById('newEmail').value = '';
+    document.getElementById('newPhone').value = '';
+    document.getElementById('newAddress').value = '';
+    document.getElementById('newPassword').value = '';
+    document.getElementById('newRole').value = 'staff';
+  }
+}
+
+function renderUsers(){
+  const tbody=document.getElementById('usersTable');
+  tbody.innerHTML='';
+  users.forEach((u,i)=>{
+    // Skip customer users in admin view
+    if (u.role === 'customer') return;
+    
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td>${u.username}</td><td>${u.email}</td><td>${u.phone}</td><td>${u.address}</td><td>${u.role}</td><td><button onclick="removeUser(${i})">Delete</button></td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+function removeUser(i){users.splice(i,1); renderUsers(); showToast('User Removed!');}
+
+// Admin Menu with auto-clear form
+function addMenu(){
+  const n=document.getElementById('menuName').value;
+  const p=Number(document.getElementById('menuPrice').value);
+  const c=document.getElementById('productCategory').value;
+  const f=document.getElementById('menuImage').files[0];
+  if(n && p && f){
+    const reader=new FileReader();
+    reader.onload=function(e){
+      const id=Date.now();
+      menuItems.push({id,name:n,price:p,image:e.target.result,category:c, stock: 0, sales: 0});
+      renderAdminMenu();
+      renderMenu();
+      renderInventory();
+      showToast('Product Added!');
+      
+      // Clear the form
+      document.getElementById('menuName').value = '';
+      document.getElementById('menuPrice').value = '';
+      document.getElementById('menuImage').value = '';
+    };
+    reader.readAsDataURL(f);
+  }
+}
+
+function renderAdminMenu(){
+  const grid=document.getElementById('adminMenuGrid');
+  grid.innerHTML='';
+  
+  // Filter products by current admin category
+  let filteredItems;
+  if (currentAdminCategory === 'all') {
+    filteredItems = menuItems;
+  } else {
+    filteredItems = menuItems.filter(item => item.category === currentAdminCategory);
+  }
+  
+  filteredItems.forEach(item=>{
+    const div=document.createElement('div');
+    div.className='menu-item';
+    div.innerHTML=`<img src="${item.image}" alt="${item.name}"><h4>${item.name}</h4><p>₱${item.price}</p>
+      <button onclick="deleteMenu(${item.id})">Delete</button>
+      <button onclick="editMenu(${item.id})">Edit</button>`;
+    grid.appendChild(div);
+  });
+}
+
+function deleteMenu(id){menuItems=menuItems.filter(i=>i.id!==id); renderAdminMenu(); renderMenu(); renderInventory(); showToast('Product Deleted!'); }
+
+function editMenu(id){
+  const item=menuItems.find(m=>m.id===id);
+  if(item){
+    const newName=prompt('Edit Product Name:', item.name);
+    const newPrice=prompt('Edit Price:', item.price);
+    if(newName && newPrice){
+      item.name=newName;
+      item.price=Number(newPrice);
+      renderAdminMenu();
+      renderMenu();
+      renderInventory();
+      showToast('Product Edited!');
+    }
+  }
+}
+
+// Admin Orders
+function renderAdminOrders(){
+  const tbody=document.getElementById('adminOrdersTable');
+  tbody.innerHTML='';
+  orders.forEach(o=>{
+    const items=o.items.map(i=>`${i.name} x${i.qty}`).join(', ');
+    const statusClass = getStatusClass(o.status);
+    const deliveryClass = getDeliveryClass(o.deliveryService);
+    
+    const tr=document.createElement('tr');
+    tr.innerHTML=`
+      <td>${o.id}</td>
+      <td>${o.customer}</td>
+      <td>${o.email}</td>
+      <td>${o.address}</td>
+      <td>${items}</td>
+      <td>₱${o.subtotal}</td>
+      <td><span class="delivery-badge ${deliveryClass}">${o.deliveryService}</span></td>
+      <td>₱${o.shippingFee}</td>
+      <td>₱${o.total}</td>
+      <td><span class="status-badge ${statusClass}">${o.status}</span></td>
+      <td>${o.payment}</td>
+      <td>${o.referenceNumber || '-'}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+// Initialize reference input and password info on page load
+document.addEventListener('DOMContentLoaded', function() {
+  toggleReferenceInput();
+  togglePasswordInfo();
+  loadSavedColors();
+});
+</script>
+</body>
+</html>
